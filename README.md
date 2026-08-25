@@ -43,5 +43,5 @@
 | [Daniel Pereira Gomes de Faria] | [dpgf@cesar.school] |
 | [Danilo César Miranda Borba Rodrigues] | [dcmbr@cesar.school] |
 | [Felipe Araújo de Oliveira] | [email@cesar.school] |
-| [Felipe Assis Ferreira dos Santos] | [email@cesar.school] |
+| [Felipe Assis Ferreira dos Santos] | [fafs@cesar.school] |
 | [José Artur Ferreira Viana] | [jafv@cesar.school] |
