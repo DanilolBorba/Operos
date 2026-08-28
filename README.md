@@ -52,8 +52,7 @@ O Operos é um projeto voltando a educar empresas sobre a importância de coleta
 
 | Nome Completo | E-mail CESAR School | Data |
 |---|---|---|
-| [Antonino Romero Bertino de Vasconcelos Neto
-] | [arbvn@cesar.school] | [Entrada: 20/08] |
+| [Antonino Romero Bertino de Vasconcelos Neto] | [arbvn@cesar.school] | [Entrada: 20/08] |
 | [Davi da Fonte Cajueiro] | [dfcemail@cesar.school] | [Entrada: 20/08] |
 | [Enzo Borges Barbosa de Andrade] | [ebba@cesar.school] | [Entrada: 20/08] |
 | [João Guilherme Vanderley Vasconcelos] | [jgvv@cesar.school] | [Entrada: 20/08] |
