@@ -18,7 +18,7 @@ O Operos é um projeto voltando a educar empresas sobre a importância de coleta
 
 ## Entrega 01
 
-### [Analise de competidores](./entrega-01/)
+### [Analise de competidores](entrega-01/analisedecompetidores.md)
 
 
 ---
