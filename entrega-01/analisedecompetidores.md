@@ -46,11 +46,14 @@ No TrackOS (Sistema de Manutenção Computacional Automática da TRACTIAN), é p
 
 - Deixa claro, por meio do desgin,  que o investimento tem retorno ao cliente por meio de estatísticas, estudos e avaliações.
 - Apresenta alertas classificados de acordo com a criticidade dos equipamentos.
+- Centraliza monitoramento, diagnóstico, dashboards e gestão de manutenção em uma mesma plataforma.
   
 ### 2.2.4 Pontos fracos:
 
 - Informações de horário de atendimento e disponibilidade do suporte estão ausentes.
-- Restrito ao segmento industrial
+- Restrito ao segmento industrial.
+- Solução de alta especificidade, atendendo uma parcela pequena de clientes.
+- Os sensores são utilizados em equipamentos próprios da tractian, não sendo possível encontrar no site compatibilidade com equipamentos não proprietários.
 
     --separacao--
 
@@ -144,7 +147,12 @@ Diferentemente de uma plataforma única, a Stefanini desenvolve e integra soluç
 
 # 4. Requisitos não-triviais obtidos
 
-1. ...
-2. 
-3. 
-4. 
+1. **Recomendação personalizada de conteúdo e soluções:** o sistema deverá direcionar o usuário para soluções, aplicações e conteúdos relacionados ao seu segmento e às necessidades informadas
+
+2. **Apresentação interativa do funcionamento da solução:** o sistema deverá apresentar de forma visual e interativa o fluxo de utilização da IoT, permitindo que o usuário compreenda como os dados são coletados, processados, analisados e transformados em informações úteis para a tomada de decisão.
+
+3. **Personalização da visualização das informações:** o sistema deverá permitir que o usuário escolha quais informações, indicadores ou conteúdos são mais relevantes para seu contexto, reduzindo a quantidade de informações apresentadas simultaneamente, facilitando sua compreensão.
+
+4. **Organização dinâmica da navegação por contexto:** o sistema deverá organizar e priorizar conteúdos de acordo com o segmento, problema ou objetivo selecionado pelo usuário.
+
+5. **Apresentação clara do meio de comunicação e horário de atendimento/suporte**: o sistema deverá deixar claro em sua tela principal onde o cliente pode entrar em contato e quais horários serão utilizados para o atendimento do usuário.
