@@ -164,3 +164,8 @@ Diferentemente de uma plataforma única, a Stefanini desenvolve e integra soluç
 4. **Organização dinâmica da navegação por contexto:** o sistema deverá organizar e priorizar conteúdos de acordo com o segmento, problema ou objetivo selecionado pelo usuário.
 
 5. **Apresentação clara do meio de comunicação e horário de atendimento/suporte**: o sistema deverá deixar claro em sua tela principal onde o cliente pode entrar em contato e quais horários serão utilizados para o atendimento do usuário.
+
+#5. Imagens da sprint
+
+![sprint](../imagens/entrega-01/sprint01.png)
+![sprint](../imagens/entrega-01/sprint_1.png)
