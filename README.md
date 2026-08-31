@@ -44,16 +44,17 @@ O Operos é um projeto voltando a educar empresas sobre a importância de coleta
 | [Danilo César Miranda Borba Rodrigues] | [dcmbr@cesar.school] |
 | [Davi da Fonte Cajueiro] | [dfcemail@cesar.school] |
 | [Enzo Borges Barbosa de Andrade] | [ebba@cesar.school] |
-| [João Guilherme Vanderley Vasconcelos] | [jgvv@cesar.school] |
+| [Oto Gonçalves frias] | [ogf@cesar.school] |
 | [Felipe Assis Ferreira dos Santos] | [fafs@cesar.school] |
 | [José Artur Ferreira Viana] | [jafv@cesar.school] |
 ## Membros Anteriores/Novos
 
 | Nome Completo | E-mail CESAR School | Data |
 |---|---|---|
-| [Antonino Romero Bertino de Vasconcelos Neto] | [arbvn@cesar.school] | [Entrada: 20/08] |
+| [Antonino Romero Bertino de Vasconcelos Neto] | [arbvn@cesar.school] | [Entrada: 20/08]  |
 | [Davi da Fonte Cajueiro] | [dfcemail@cesar.school] | [Entrada: 20/08] |
 | [Enzo Borges Barbosa de Andrade] | [ebba@cesar.school] | [Entrada: 20/08] |
-| [João Guilherme Vanderley Vasconcelos] | [jgvv@cesar.school] | [Entrada: 20/08] |
+| [João Guilherme Vanderley Vasconcelos] | [jgvv@cesar.school] | [Entrada: 20/08] [Saida: 31/08] |
+| [Oto Gonçalves frias] | [ogf@cesar.school] | [Entrada: 31/08] |
 
 
