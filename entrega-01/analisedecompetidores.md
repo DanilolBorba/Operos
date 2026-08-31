@@ -17,6 +17,8 @@ A WEGnology é uma plataforma de Internet das Coisas desenvolvida pela WEG para 
 
 A plataforma coleta e agrega dados provenientes de equipamentos como sensores, motores, atuadores, drives e controles. Essas informações podem ser tratadas, correlacionadas e apresentadas em dashboards personalizáveis. A WEGnology também permite criar fluxos de automação por meio de uma interface Low-Code com recursos de "drag and drop", além de permitir a utilização de modelagem estatística e machine learning através de Jupyter Notebooks.
 
+![dashboard wegnology](../imagens/entrega-01/wegnology.png)
+
 ### 2.1.3 Pontos fortes:
 
 - Permite a criação de dashboards personalizáveis de acordo com as necessidades de cada negócio.
@@ -41,6 +43,8 @@ Empresa brasileira focada na criação e distribuição de tecnologia especializ
 
 Utilizando Smart Trac, tecnologia original da empresa, junto com sensores inteligentes, é possível receber métricas como temperatura, gasto de energia e eficiência e vibração de cada máquina, detectando possíveis anomalias antes que o ativo industrial pare de funcionar.
 No TrackOS (Sistema de Manutenção Computacional Automática da TRACTIAN), é possível acompanhar métricas de desempenho dos equipamentos e agendar
+
+![dashboard tractian](../imagens/entrega-01/tractian_dash.png)
 
 ### 2.2.3 Pontos fortes:
 
@@ -67,6 +71,8 @@ O Insights Hub é uma plataforma de Internet das Coisas Industrial da Siemens vo
 
 A plataforma conecta equipamentos e processos industriais, coleta seus dados e os contextualiza para permitir o monitoramento da operação. A partir dessas informações, é possível acompanhar indicadores de desempenho, identificar anomalias, analisar a eficácia dos equipamentos e utilizar inteligência artificial para prever problemas de qualidade e desempenho. Os resultados podem ser visualizados em dashboards e utilizados para orientar ações corretivas.
 
+![dashboard Siemens](../imagens/entrega-01/siemens.png)
+
 ### 2.3.3 Pontos fortes:
 
 - Utiliza dados de equipamentos e processos para gerar insights voltados à tomada de decisão.
@@ -90,6 +96,8 @@ O EcoStruxure é uma plataforma desenvolvida pela Schneider Electric para conect
 ### 2.4.2 Funcionamento:
 
 O EcoStruxure conecta dispositivos e sensores presentes na operação da empresa e coleta seus dados, podendo enviá-los para sistemas locais ou para a nuvem. As informações coletadas são analisadas para identificar condições relevantes da operação e disponibilizar informações em tempo real. A plataforma funciona como base para diferentes soluções da Schneider Electric voltadas para indústrias, energia, edifícios, data centers e outros ambientes.
+
+![dashboard schneider](../imagens/entrega-01/schneider.png)
 
 ### 2.4.3 Pontos fortes:
 
