@@ -1,5 +1,15 @@
 # 1. Introdução
-Este documento tem como intuito sintetizar informações, padrões e tendências vistas por outras empresas do mercado das _IoT_'s e convertertê-las em oportunidades de inovação. O dossiê conta com uma análise das seguintes empresas: 
+Este documento tem como intuito sintetizar informações, padrões e tendências vistas por outras empresas do mercado das _IoT_'s e convertertê-las em oportunidades de inovação, assim como o registro do Backlog e do Quadro da Sprint. A análise está dividida desta forma: 
+
+1. Introdução
+2. Empresas Analisadas
+3. Benchmark
+4. Requisitos Não-Triviais Obtidos
+5. **Print do Backlog e Quadro da Sprint**
+
+
+O dossiê a seguir conta com uma análise das seguintes empresas: 
+
 - WEGnology
 - Siemens (Insights Hub)
 - Schneider (EcoStruxure)
@@ -31,7 +41,6 @@ A plataforma coleta e agrega dados provenientes de equipamentos como sensores, m
 - Por ser uma plataforma ampla e altamente configurável, sua utilização completa pode exigir conhecimento técnico para configuração e integração dos dispositivos.
 - Recursos como machine learning e análises mais avançadas dependem da construção e configuração da solução, não sendo necessariamente automáticos em todas as aplicações.
 
-    --separacao--
 
 ## 2.2 TRACTIAN
 
@@ -59,7 +68,6 @@ No TrackOS (Sistema de Manutenção Computacional Automática da TRACTIAN), é p
 - Solução de alta especificidade, atendendo uma parcela pequena de clientes.
 - Os sensores são utilizados em equipamentos próprios da tractian, não sendo possível encontrar no site compatibilidade com equipamentos não proprietários.
 
-    --separacao--
 
 ## 2.3 Siemens Insights Hub
 
@@ -85,7 +93,6 @@ A plataforma conecta equipamentos e processos industriais, coleta seus dados e o
 - Possui grande quantidade de soluções e recursos voltados ao ambiente industrial, podendo tornar sua compreensão inicial mais complexa para usuários sem conhecimento técnico.
 - A implementação pode envolver integração com diferentes equipamentos, fontes de dados e sistemas já existentes na empresa.
 
-    --separacao--
 
 ## 2.4 Schneider Electric EcoStruxure
 
@@ -111,7 +118,6 @@ O EcoStruxure conecta dispositivos e sensores presentes na operação da empresa
 - O EcoStruxure é composto por diversas soluções e produtos, podendo tornar difícil identificar inicialmente qual ferramenta atende melhor uma necessidade específica.
 - A grande abrangência da plataforma pode aumentar a complexidade de implantação quando diferentes sistemas e equipamentos precisam ser integrados.
 
-    --separacao--
 
 ## 2.5 Stefanini
 
@@ -165,7 +171,9 @@ Diferentemente de uma plataforma única, a Stefanini desenvolve e integra soluç
 
 5. **Apresentação clara do meio de comunicação e horário de atendimento/suporte**: o sistema deverá deixar claro em sua tela principal onde o cliente pode entrar em contato e quais horários serão utilizados para o atendimento do usuário.
 
-#5. Imagens da sprint
-
-![sprint](../imagens/entrega-01/sprint01.png)
-![sprint](../imagens/entrega-01/sprint_1.png)
+# 5. Imagens da sprint
+## 5.1 Backlog do produto
+![sprint](../imagens/entrega-01/backlogproduto.png)
+---
+## 5.2 Quadro da Sprint
+![sprint](../imagens/entrega-01/printboardsprint.png)
