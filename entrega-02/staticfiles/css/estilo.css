@@ -1,0 +1,119 @@
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9fafb;
+    color: #333;
+    font-size: 22px;
+}
+
+header {
+    background-color: #3052ff;
+    padding: 5px;
+    color: white;
+    text-align: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+button, input[type="submit"] {
+    background-color: #2d6cdf;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover, input[type="submit"]:hover {
+    background-color: #1c4cad;
+}
+
+h1, h2 {
+    color: #000000;
+}
+
+.equipe {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.pessoa {
+    width: 200px;
+    text-align: center;
+}
+
+.pessoa img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.pessoa p {
+    margin: 5px 0;
+}
+
+
+
+.line {
+    border-right: 2px solid rgba(0, 0, 0, 0.75);
+    color: rgba(8, 8, 8, 0.75);
+    font-family: "Special Elite", monospace;
+    font-size: 90;
+    text-align: center;
+    margin: 0 auto;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+
+.line {
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.typing-animation {
+    animation: typing 3s steps(20) 1s normal both;
+}
+
+@keyframes typing {
+    0% {
+        width: 0;
+        border-right: 2px solid rgba(0, 0, 0, 0.75); 
+    }
+    1% {
+        border-right: 2px solid rgba(0, 0, 0, 0.75);
+    }
+    99% {
+        border-right: 2px solid rgba(0, 0, 0, 0.75); 
+    }
+    100% {
+        width: 11em;
+        border-right: 2px solid transparent; 
+    }
+}
