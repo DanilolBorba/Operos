@@ -12,7 +12,7 @@ class MainView(View):
     def get(self, request):
         lista_ultimas_questoes = Pergunta.objects.order_by("-data_criacao")
         contexto = {'perguntas' : lista_ultimas_questoes}
-        return render(request, 'pergunta/index.html', contexto)
+        return render(request, 'perguntas/index.html', contexto)
 
 class PerguntaView(View):
     def get(self, request, pergunta_id):
@@ -20,8 +20,8 @@ class PerguntaView(View):
             pergunta = Pergunta.objects.get(pk=pergunta_id)
         except Pergunta.DoesNotExist:
             raise Http404("Pergunta inexistente")
-        contexto = {'pergunta' : pergunta}
-        return render(request, 'pergunta/detalhe.html', contexto)
+        contexto = {'perguntas' : pergunta}
+        return render(request, 'perguntas/detalhe.html', contexto)
 
 class VotoView(View):
     def get(self, request, resposta_id):
@@ -38,11 +38,11 @@ class VotoView(View):
             raise Http404("Resposta inexistente")
         resposta.votos += 1
         resposta.save()
-        return redirect(reverse('pergunta:detalhe', args=[resposta.pergunta.id]))
+        return redirect(reverse('perguntas:detalhe', args=[resposta.pergunta.id]))
 
 class InserirPerguntaView(View):
     def get(self, request):
-        return render(request, 'pergunta/inserir_pergunta.html')
+        return render(request, 'perguntas/inserir_pergunta.html')
 
     def post(self, request):
         if request.user.is_authenticated:
@@ -58,7 +58,7 @@ class InserirPerguntaView(View):
 tentativa=tentativa, 	data_criacao=data_criacao, usuario=usuario)
         pergunta.save()
 
-        return redirect(reverse('pergunta:detalhe', args=[pergunta.id]))
+        return redirect(reverse('perguntas:detalhe', args=[pergunta.id]))
 
 class InserirRespostaView(View):
     def get(self, request, pergunta_id):
@@ -66,7 +66,7 @@ class InserirRespostaView(View):
             pergunta = Pergunta.objects.get(pk=pergunta_id)
         except Pergunta.DoesNotExist:
             raise Http404("Pergunta inexistente")
-        contexto = {'pergunta' : pergunta}
+        contexto = {'perguntas' : pergunta}
         return render(request, 'pergunta/inserir_resposta.html', contexto)
 
     def post(self, request, pergunta_id):
@@ -84,5 +84,5 @@ class InserirRespostaView(View):
         
         pergunta.resposta_set.create(texto=texto, data_criacao=data_criacao, usuario=usuario)
 
-        return redirect(reverse('pergunta:detalhe', args=[pergunta.id]))
+        return redirect(reverse('perguntas:detalhe', args=[pergunta.id]))
 # Create your views here.
