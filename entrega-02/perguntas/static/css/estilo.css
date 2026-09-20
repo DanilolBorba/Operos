@@ -55,7 +55,30 @@ h1, h2 {
     color: #000000;
 }
 
-/* será usado posteriormente: */
+.equipe {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.pessoa {
+    width: 200px;
+    text-align: center;
+}
+
+.pessoa img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.pessoa p {
+    margin: 5px 0;
+}
+
+
+
 .line {
     border-right: 2px solid rgba(0, 0, 0, 0.75);
     color: rgba(8, 8, 8, 0.75);
