@@ -15,5 +15,6 @@ urlpatterns = [
     # ex: /forum/5/resposta/
     path("<int:pergunta_id>/resposta/",
          views.InserirRespostaView.as_view(), name="inserir_resposta"),
+    path('quem-somos/', views.QuemSomosView.as_view(), name='quem_somos'),
 
 ]

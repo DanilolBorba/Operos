@@ -1,21 +1,12 @@
 {% extends "perguntas/base.html" %}
 
 {% block content %}
-{% if perguntas %}
-    <h2>Últimas perguntas</h2>
-    <ul>
-    {% for pergunta in perguntas %}
-        <li>
-            <a href="{% url 'perguntas:detalhe' pergunta.id %}">
-                {{ pergunta.titulo }}
-            </a>
-        </li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>Nenhuma pergunta disponível.</p>
-{% endif %}
-<a href="{% url 'perguntas:inserir_pergunta' %}">
-    <button>Nova pergunta</button>
-</a>
+<h1 class="line typing-animation">Conheça a Revolução.</h1>
+<br>
+<p>
+    Olá, somos a Operos, implementamos soluções para aprimorar os conhecimentos dos usuários em IoT. 
+    Nosso objetivo é expandir o interesse do IoT para empresas, de forma dinâmica e com fácil leitura e 
+    compreensão do que se trata a proposta enviada, buscando minimizar falhas e erros nas produções 
+    com os dispositivos apresentados. 
+</p>
 {% endblock %}

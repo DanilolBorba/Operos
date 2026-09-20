@@ -42,7 +42,14 @@ class VotoView(View):
 
 class InserirPerguntaView(View):
     def get(self, request):
-        return render(request, 'perguntas/inserir_pergunta.html')
+        lista_ultimas_questoes = Pergunta.objects.order_by("-data_criacao")
+        contexto = {'perguntas': lista_ultimas_questoes}
+
+        return render(
+            request,
+            'perguntas/inserir_pergunta.html',
+            contexto
+        )
 
     def post(self, request):
         if request.user.is_authenticated:
@@ -60,6 +67,10 @@ tentativa=tentativa, 	data_criacao=data_criacao, usuario=usuario)
 
         return redirect(reverse('perguntas:detalhe', args=[pergunta.id]))
 
+class QuemSomosView(View):
+    def get(self, request):
+        return render(request, 'perguntas/quem_somos.html')
+    
 class InserirRespostaView(View):
     def get(self, request, pergunta_id):
         try:
