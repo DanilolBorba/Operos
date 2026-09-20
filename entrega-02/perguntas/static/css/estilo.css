@@ -7,10 +7,14 @@ body {
 }
 
 header {
-    background-color: #2d6cdf;
+    background-color: #3052ff;
     padding: 5px;
     color: white;
     text-align: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 nav a {
@@ -48,4 +52,44 @@ button:hover, input[type="submit"]:hover {
 
 h1, h2 {
     color: #000000;
+}
+
+/* será usado posteriormente: */
+.line {
+    border-right: 2px solid rgba(0, 0, 0, 0.75);
+    color: rgba(8, 8, 8, 0.75);
+    font-family: "Special Elite", monospace;
+    font-size: 90;
+    text-align: center;
+    margin: 0 auto;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+
+.line {
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.typing-animation {
+    animation: typing 3s steps(20) 1s normal both;
+}
+
+@keyframes typing {
+    0% {
+        width: 0;
+        border-right: 2px solid rgba(0, 0, 0, 0.75); 
+    }
+    1% {
+        border-right: 2px solid rgba(0, 0, 0, 0.75);
+    }
+    99% {
+        border-right: 2px solid rgba(0, 0, 0, 0.75); 
+    }
+    100% {
+        width: 11em;
+        border-right: 2px solid transparent; 
+    }
 }
