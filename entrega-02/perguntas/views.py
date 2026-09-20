@@ -51,7 +51,7 @@ class InserirPerguntaView(View):
             usuario = 'anônimo'
         titulo = request.POST.get('titulo')
         detalhe = request.POST.get('detalhe')
-        tentativa = request.POST.get('tentativa')
+        tentativa = request.POST.get('tentativa') or ''
         data_criacao = timezone.now()
         
         pergunta = Pergunta(titulo=titulo, detalhe=detalhe, 

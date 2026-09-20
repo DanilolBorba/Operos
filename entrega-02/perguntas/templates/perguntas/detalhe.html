@@ -2,8 +2,7 @@
 
 {% block content %}
 <h2>{{ pergunta.titulo }}</h2>
-<p><b>Descrição:</b> {{ pergunta.detalhe }}</p>
-<p><b>Tentativas:</b> {{ pergunta.tentativa }}</p>
+<p><b>Descrição:</b> <br>{{ pergunta.detalhe }}</p>
 <p><b>Data:</b> {{ pergunta.data_criacao|date:"d/m/Y H:i" }}</p>
 <p><b>Autor:</b> {{ pergunta.usuario }}</p>
 {% block respostas %}
