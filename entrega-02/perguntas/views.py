@@ -20,7 +20,7 @@ class PerguntaView(View):
             pergunta = Pergunta.objects.get(pk=pergunta_id)
         except Pergunta.DoesNotExist:
             raise Http404("Pergunta inexistente")
-        contexto = {'perguntas' : pergunta}
+        contexto = {'pergunta' : pergunta}
         return render(request, 'perguntas/detalhe.html', contexto)
 
 class VotoView(View):
@@ -66,8 +66,8 @@ class InserirRespostaView(View):
             pergunta = Pergunta.objects.get(pk=pergunta_id)
         except Pergunta.DoesNotExist:
             raise Http404("Pergunta inexistente")
-        contexto = {'perguntas' : pergunta}
-        return render(request, 'pergunta/inserir_resposta.html', contexto)
+        contexto = {'pergunta' : pergunta}
+        return render(request, 'perguntas/inserir_resposta.html', contexto)
 
     def post(self, request, pergunta_id):
         try:
