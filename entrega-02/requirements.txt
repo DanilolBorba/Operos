@@ -1,3 +1,8 @@
 django
 selenium
 webdriver-manager
+python-dotenv
+whitenoise
+dj-database-url
+psycopg2-binary
+gunicorn
