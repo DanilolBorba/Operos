@@ -1,11 +1,11 @@
 
-## Operus
+## Operos
 
 ---
 
 ## Descrição do Projeto
 
-O Operus é um projeto voltando a educar empresas sobre a importância de coletar dados operacionais por meio de IoT para melhorar a gestão e a tomada de decisão.
+O Operos é um projeto voltando a educar empresas sobre a importância de coletar dados operacionais por meio de IoT para melhorar a gestão e a tomada de decisão.
 
 ---
 
@@ -18,15 +18,15 @@ O Operus é um projeto voltando a educar empresas sobre a importância de coleta
 
 ## Entrega 01
 
-### [Analise de competidores](entrega-01/analisedecompetidores.md)
+### [Análise de competidores](entrega-01/analisedecompetidores.md)
 
 
 ---
 
 ## Entrega 02
 
-### Artefatos / Screenshots
-
+### Quadro da Segunda Sprint
+![board 2](imagens/boardsprint2.jpg)
 
 ---
 
