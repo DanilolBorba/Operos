@@ -27,6 +27,7 @@ O Operos é um projeto voltando a educar empresas sobre a importância de coleta
 
 ### Quadro da Segunda Sprint
 ![board 2](imagens/boardsprint2.jpg)
+![Screen Cast](https://youtu.be/S3bN48h3mFk)
 
 ---
 
