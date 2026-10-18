@@ -24,6 +24,9 @@
         </div>
 
     </div>
+     {% if pequenas == 0 and medias == 0 and grandes == 0 %}
+        <p>Não existem pedidos de serviços registrados.</p>
+    {% endif %}
 </div>
 
 {{ block.super }}

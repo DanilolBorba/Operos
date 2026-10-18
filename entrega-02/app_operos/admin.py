@@ -21,7 +21,7 @@ class SolicitacaoAdmin(admin.ModelAdmin):
             Solicitacao.objects
             .values('porte_empresa')
             .annotate(
-                total=Count('usuario_id', distinct=True)
+                total=Count('id')
             )
         )
 
