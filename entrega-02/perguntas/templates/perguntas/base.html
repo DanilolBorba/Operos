@@ -1,22 +1,26 @@
-<html>
-<head>
-    <title>Operos</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
-</head>
-<body>
-    <header>
-        <img src="{% static 'imagens_gerais/logo_operos.png' %}" alt="Operos" height=100>
-        <nav>
-            <a href="{% url 'home' %}">Home</a> |
-            <a href="{% url 'quem_somos' %}">Quem Somos</a> |
-            <a href="{% url 'perguntas:inserir_pergunta' %}">Fale Conosco</a>
-        </nav>
-    </header>
+<!-- Exemplo estrutural de inserção no cabeçalho (Header) do base.html -->
+<header class="header-principal">
+    <!-- Demais conteúdos e links existentes do cabeçalho -->
+    <nav>
+        <!-- ... links anteriores ... -->
+        <a href="#" class="btn-fale-conosco">Fale Conosco</a>
 
-    <main class="container">
-        {% block content %}
-        {% endblock %}
-    </main>
-</body>
-</html>
+        {% if user.is_authenticated %}
+            <!-- Exibe avatar padrão e o primeiro nome do nome de exibição -->
+            <div class="usuario-logado-info" style="display: inline-flex; align-items: center; gap: 8px; margin-left: 15px;">
+                <span class="avatar-default" style="width: 32px; height: 32px; background-color: #ccc; border-radius: 50%; display: inline-block;"></span>
+                <span class="saudacao-usuario">
+                    Olá, {{ user.nome_exibicao|default:user.username|slugify|title|cut:"-"|truncatewords:1 }}!
+                </span>
+                <form action="{% url 'logout' %}" method="post" style="display: inline; margin: 0;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-logout" style="background: none; border: none; cursor: pointer; color: inherit;">Sair</button>
+                </form>
+            </div>
+        {% else %}
+            <!-- Botão de Criar Conta ao lado de Fale Conosco para visitantes -->
+            <a href="{% url 'cadastro' %}" class="btn-criar-conta" style="margin-left: 10px;">Criar conta</a>
+            <a href="{% url 'login' %}" class="btn-login" style="margin-left: 10px;">Entrar</a>
+        {% endif %}
+    </nav>
+</header>
