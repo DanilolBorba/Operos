@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 from django.conf import settings
 
@@ -24,6 +25,14 @@ class Solicitacao(models.Model):
 
     data_solicitacao = models.DateTimeField(
         auto_now_add=True
+    )
+
+    descricao = models.TextField(blank=True)
+
+    protocolo = models.UUIDField(
+    default=uuid.uuid4,
+    unique=False,
+    editable=False
     )
 
     def __str__(self):
