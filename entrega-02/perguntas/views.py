@@ -8,6 +8,10 @@ from django.utils import timezone
 from django.shortcuts import redirect
 from django.urls import reverse
 
+from django.shortcuts import render, redirect
+from django.contrib.auth import login
+from .forms import FormularioCadastroUsuario
+
 class MainView(View):
     def get(self, request):
         lista_ultimas_questoes = Pergunta.objects.order_by("-data_criacao")
@@ -97,3 +101,14 @@ class InserirRespostaView(View):
 
         return redirect(reverse('perguntas:detalhe', args=[pergunta.id]))
 # Create your views here.
+
+def view_cadastro(request):
+    if request.method == 'POST':
+        form = FormularioCadastroUsuario(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('home:index') 
+    else:
+        form = FormularioCadastroUsuario()
+    return render(request, 'perguntas/cadastro.html', {'form': form})
