@@ -1,0 +1,33 @@
+{% extends "perguntas/base.html" %}
+
+{% block content %}
+
+<h1>Solicitação registrada com sucesso!</h1>
+
+<p>Recebemos sua solicitação de serviço IoT.</p>
+
+<p>
+    <strong>Solução:</strong>
+    {{ solicitacao.servico }}
+</p>
+
+<p>
+    <strong>Porte da empresa:</strong>
+    {{ solicitacao.get_porte_empresa_display }}
+</p>
+
+<p>
+    <strong>Protocolo:</strong>
+    {{ solicitacao.protocolo }}
+</p>
+
+<p>
+    <strong>Descrição:</strong>
+    {{ solicitacao.descricao|default:"Não informada" }}
+</p>
+
+<a href="{% url 'perguntas:index' %}">
+    Voltar para a página inicial
+</a>
+
+{% endblock %}

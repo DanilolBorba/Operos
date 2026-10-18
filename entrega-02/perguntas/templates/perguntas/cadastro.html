@@ -53,8 +53,8 @@
             <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 15px;">
                 <div class="form-group" style="display: flex; flex-direction: column; gap: 5px;">
                     <label style="font-weight: 600; font-size: 0.85em; color: #444;">Nome Completo</label>
-                    {{ form.first_name }}
-                    {% for error in form.first_name.errors %}<span style="color: #d9534f; font-size: 0.8em;">{{ error }}</span>{% endfor %}
+                    {{ form.nome_completo }}
+                    {% for error in form.nome_completo.errors %}<span style="color: #d9534f; font-size: 0.8em;">{{ error }}</span>{% endfor %}
                 </div>
 
                 <div class="form-group" style="display: flex; flex-direction: column; gap: 5px;">
@@ -127,4 +127,46 @@
         Já tem uma conta? <a href="{% url 'perguntas:login' %}" style="color: #0066cc; text-decoration: none; font-weight: bold;">Faça login aqui</a>
     </div>
 </div>
+
+<style>
+    .auth-form,
+    .auth-form * {
+        box-sizing: border-box;
+    }
+
+    .auth-form label,
+    .auth-form input,
+    .auth-form select,
+    .auth-form textarea,
+    .auth-form button {
+        font-family: inherit;
+    }
+
+    .auth-form input:not([type="checkbox"]):not([type="radio"]),
+    .auth-form select,
+    .auth-form textarea {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        font-size: 0.85em;
+    }
+
+    .auth-form .form-section,
+    .auth-form .form-group {
+        min-width: 0;
+    }
+
+    @media (max-width: 650px) {
+        .auth-form .form-section > div {
+            grid-template-columns: minmax(0, 1fr) !important;
+        }
+
+        .auth-container {
+            max-width: 100% !important;
+            margin: 20px auto !important;
+            padding: 20px !important;
+        }
+    }
+</style>
+
 {% endblock %}
