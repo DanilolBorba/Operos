@@ -1,24 +1,226 @@
+
 {% extends "perguntas/base.html" %}
 
 {% block content %}
+
 <h1 class="line typing-animation">Conheça a Revolução.</h1>
+
 <br>
+
 <p>
-    Olá, somos a Operos, implementamos soluções para aprimorar os conhecimentos dos usuários em IoT. 
-    Nosso objetivo é expandir o interesse do IoT para empresas, de forma dinâmica e com fácil leitura e 
-    compreensão do que se trata a proposta enviada, buscando minimizar falhas e erros nas produções 
-    com os dispositivos apresentados. 
+    Olá, somos a Operos, implementamos soluções para aprimorar os conhecimentos dos usuários em IoT.
+    Nosso objetivo é expandir o interesse do IoT para empresas, de forma dinâmica e com fácil leitura e
+    compreensão do que se trata a proposta enviada, buscando minimizar falhas e erros nas produções
+    com os dispositivos apresentados.
 </p>
+
+{% if user.is_authenticated %}
+
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <h2>Soluções IoT recomendadas</h2>
+
+    {% for solucao in solucoes %}
+        <div class="homebox solucao-card">
+
+            <h3>{{ solucao.nome }}</h3>
+
+            <p>{{ solucao.descricao }}</p>
+
+            <form
+                method="post"
+                action="{% url 'app_operos:solicitar_servico' %}"
+            >
+                {% csrf_token %}
+
+                <input
+                    type="hidden"
+                    name="servico"
+                    value="{{ solucao.nome }}"
+                >
+
+                <label for="porte-{{ forloop.counter }}">
+                    Porte da empresa:
+                </label>
+
+                <select
+                    id="porte-{{ forloop.counter }}"
+                    name="porte_empresa"
+                    required
+                >
+                    <option value="">Selecione</option>
+                    <option value="pequeno">Pequeno</option>
+                    <option value="medio">Médio</option>
+                    <option value="grande">Grande</option>
+                </select>
+
+
+                <label for="descricao-{{ forloop.counter }}">
+                    Descreva sua necessidade:
+                </label>
+
+                <textarea
+                    id="descricao-{{ forloop.counter }}"
+                    name="descricao"
+                    rows="3"
+                    placeholder="Conte um pouco sobre sua necessidade"
+                ></textarea>
+
+
+                <button type="submit">
+                    Solicitar serviço
+                </button>
+
+            </form>
+
+        </div>
+
+    {% empty %}
+        <p>
+            Não encontramos soluções para a área de atuação
+            cadastrada em sua conta.
+        </p>
+    {% endfor %}
+
+{% endif %}
 
 <h2>Problema a ser resolvido</h2>
 
 <div class="homebox">
-    <img src="https://static.wixstatic.com/media/db1550_ed1c30f522fd44c58a52ef417b4c0b76~mv2.png/v1/fill/w_176,h_106,al_c,lg_1,q_85,enc_avif,quality_auto/logo-bzu-tech.png">
+
+    <img
+        src="https://static.wixstatic.com/media/db1550_ed1c30f522fd44c58a52ef417b4c0b76~mv2.png/v1/fill/w_176,h_106,al_c,lg_1,q_85,enc_avif,quality_auto/logo-bzu-tech.png"
+        alt="Logo da BZU Tech"
+    >
+
     <p>
-        A pedido da empresa BZU Tech, uma das maiores do estado de Pernambuco no quesito de IoT, 
-        embarcamos numa missão de expandir o mercado das IoT's para pessoas e empresas 
-        por meio de métodos de fácil assimilação aos benefícios de sua aplicação.
+        A pedido da empresa BZU Tech, uma das maiores do estado de Pernambuco no quesito de IoT,
+        embarcamos numa missão de expandir o mercado das IoT's para pessoas e empresas por meio de
+        métodos de fácil assimilação aos benefícios de sua aplicação.
     </p>
+
 </div>
+
+<style>
+    .solucao-card {
+        box-sizing: border-box;
+        margin: 22px 0;
+        padding: 24px;
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-top: 3px solid #304bff;
+        border-radius: 10px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+    }
+
+    .solucao-card h3 {
+        margin: 0 0 12px;
+        color: #303030;
+        font-family: inherit;
+        font-size: 1.2rem;
+    }
+
+    .solucao-card p {
+        margin: 0 0 22px;
+        color: #444444;
+        font-family: inherit;
+        line-height: 1.6;
+    }
+
+    .solucao-card form {
+        display: grid;
+        grid-template-columns: 190px minmax(0, 1fr);
+        align-items: start;
+        gap: 12px 18px;
+    }
+
+    .solucao-card label {
+        padding-top: 10px;
+        color: #303030;
+        font-family: inherit;
+        font-size: 0.95rem;
+        font-weight: 600;
+    }
+
+    .solucao-card select,
+    .solucao-card textarea {
+        box-sizing: border-box;
+        width: 100%;
+        min-width: 0;
+        margin: 0;
+        padding: 11px 12px;
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
+        background: #ffffff;
+        color: #303030;
+        font-family: inherit;
+        font-size: 0.95rem;
+    }
+
+    .solucao-card select {
+        cursor: pointer;
+    }
+
+    .solucao-card textarea {
+        min-height: 95px;
+        resize: vertical;
+        line-height: 1.5;
+    }
+
+    .solucao-card select:focus,
+    .solucao-card textarea:focus {
+        outline: none;
+        border-color: #304bff;
+        box-shadow: 0 0 0 3px rgba(48, 75, 255, 0.12);
+    }
+
+    .solucao-card button {
+        grid-column: 2;
+        justify-self: start;
+        padding: 11px 20px;
+        border: none;
+        border-radius: 6px;
+        background: #304bff;
+        color: #ffffff;
+        font-family: inherit;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s ease;
+    }
+
+    .solucao-card button:hover {
+        background: #263ed9;
+    }
+
+    @media (max-width: 600px) {
+        .solucao-card {
+            padding: 18px;
+        }
+
+        .solucao-card form {
+            grid-template-columns: minmax(0, 1fr);
+            gap: 8px;
+        }
+
+        .solucao-card label {
+            padding-top: 4px;
+        }
+
+        .solucao-card select,
+        .solucao-card textarea,
+        .solucao-card button {
+            grid-column: 1;
+        }
+
+        .solucao-card button {
+            margin-top: 8px;
+        }
+    }
+</style>
 
 {% endblock %}
