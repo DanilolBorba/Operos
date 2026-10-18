@@ -1,0 +1,31 @@
+
+{% extends "admin/change_list.html" %}
+
+{% block content %}
+
+<div style="margin-bottom: 25px;">
+    <h2>Usuários que solicitaram serviços por porte</h2>
+
+    <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+
+        <div style="padding: 20px; border: 1px solid gray;">
+            <h3>Pequeno porte</h3>
+            <h1>{{ pequenas }}</h1>
+        </div>
+
+        <div style="padding: 20px; border: 1px solid gray;">
+            <h3>Médio porte</h3>
+            <h1>{{ medias }}</h1>
+        </div>
+
+        <div style="padding: 20px; border: 1px solid gray;">
+            <h3>Grande porte</h3>
+            <h1>{{ grandes }}</h1>
+        </div>
+
+    </div>
+</div>
+
+{{ block.super }}
+
+{% endblock %}
