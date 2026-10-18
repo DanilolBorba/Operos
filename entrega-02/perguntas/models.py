@@ -68,17 +68,20 @@ AREA_ATUACAO_ESCOLHA = [
 ]
 
 class UsuarioPersonalizado(AbstractUser):
-    nome_completo = models.CharField(max_length=32)
+    nome_completo = models.CharField(max_length=32, blank=True, null=True)
     nome_exibicao = models.CharField(max_length=16, blank=True, null=True)
-    telefone = models.CharField(max_length=20)
-    estado = models.CharField(max_length=2, choices=ESTADO_ESCOLHA)
-    empresa = models.CharField(max_length=255)
-    cpf_cnpj = models.CharField(max_length=14)
-    cargo = models.CharField(max_length=50, choices=CARGO_ESCOLHA)
-    setor = models.CharField(max_length=100)
-    area_atuacao = models.CharField(max_length=100, choices=AREA_ATUACAO_ESCOLHA)
+    telefone = models.CharField(max_length=20, blank=True, null=True)
+    estado = models.CharField(max_length=2, choices=ESTADO_ESCOLHA, blank=True, null=True)
+    empresa = models.CharField(max_length=255, blank=True, null=True)
+    cpf_cnpj = models.CharField(max_length=14, blank=True, null=True)
+    cargo = models.CharField(max_length=50, choices=CARGO_ESCOLHA, blank=True, null=True)
+    setor = models.CharField(max_length=100, blank=True, null=True)
+    area_atuacao = models.CharField(max_length=100, choices=AREA_ATUACAO_ESCOLHA, blank=True, null=True)
 
     def save(auto_self, *args, **kwargs):
         if not auto_self.nome_exibicao:
             auto_self.nome_exibicao = auto_self.nome_completo[:16]
         super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.username
