@@ -1,10 +1,7 @@
 from django.urls import path
-from django.contrib import admin
-from django.urls import path, include
 from django.contrib.auth import views as auth_views
-from app_operos.views import view_cadastro 
-
-from . import views
+from .views import view_cadastro
+from . import views 
 
 app_name = 'perguntas'
 urlpatterns = [
@@ -20,12 +17,11 @@ urlpatterns = [
     path("<int:pergunta_id>/resposta/",
          views.InserirRespostaView.as_view(), name="inserir_resposta"),
     path('quem-somos/', views.QuemSomosView.as_view(), name='quem_somos'),
+    path('home/', views.MainView.as_view(), name='home'),
 
     #partes login
-    path('admin/', admin.site.urls),
-    path('', include('perguntas.urls')), 
     path('cadastro/', view_cadastro, name='cadastro'),
-    path('login/', auth_views.LoginView.as_view(template_name='app_operos/login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(next_page='home:index'), name='logout'),
+    path('login/', auth_views.LoginView.as_view(template_name='perguntas/login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='home:index'), name='home'),
 
 ]
