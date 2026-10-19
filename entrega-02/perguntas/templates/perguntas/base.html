@@ -12,7 +12,7 @@
         <nav>
             <a href="{% url 'perguntas:index' %}">Home</a> |
             <a href="{% url 'perguntas:quem_somos' %}">Quem Somos</a> |
-            <a href="{% url 'perguntas:inserir_pergunta' %}" class="btn-fale-conosco">Fale Conosco</a>
+            <a href="{% url 'perguntas:inserir_pergunta' %}" class="btn-fale-conosco">Fale Conosco |</a>
 
             {% if user.is_authenticated %}
                 <!-- mostra icon padrão e o primeiro nome do nome de exibição -->
@@ -23,12 +23,12 @@
                     </span>
                     <form action="{% url 'perguntas:logout' %}" method="post" style="display: inline; margin: 0;">
                         {% csrf_token %}
-                        <button type="submit" class="btn-logout" style="background: none; border: none; cursor: pointer; color: inherit;">Sair</button>
+                        <button type="submit" class="btn-logout" style="background: none; border: none; cursor: pointer; color: inherit;">| Sair</button>
                     </form>
                 </div>
             {% else %}
                 <!-- botao p criar conta ou logar para vistitantes -->
-                <a href="{% url 'perguntas:cadastro' %}" class="btn-criar-conta" style="margin-left: 10px;">Criar conta</a>
+                <a href="{% url 'perguntas:cadastro' %}" class="btn-criar-conta" style="margin-left: 10px;">Criar conta |</a>
                 <a href="{% url 'perguntas:login' %}" class="btn-login" style="margin-left: 10px;">Entrar</a>
             {% endif %}
         </nav>
