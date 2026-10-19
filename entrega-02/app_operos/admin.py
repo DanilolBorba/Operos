@@ -1,3 +1,4 @@
+from django.db.models import Count
 from django.contrib import admin
 from .models import Solicitacao
 
@@ -21,21 +22,6 @@ class SolicitacaoAdmin(admin.ModelAdmin):
         'servico',
         'protocolo',
     )
-from django.db.models import Count
-from .models import Solicitacao
-
-
-@admin.register(Solicitacao)
-class SolicitacaoAdmin(admin.ModelAdmin):
-
-    list_display = (
-        'usuario',
-        'porte_empresa',
-        'servico',
-        'data_solicitacao'
-    )
-
-    list_filter = ('porte_empresa',)
 
     def changelist_view(self, request, extra_context=None):
 
