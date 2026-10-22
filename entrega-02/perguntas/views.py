@@ -11,12 +11,32 @@ from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from .forms import FormularioCadastroUsuario
+from app_operos.views import SOLUCOES_IOT
+
 
 class MainView(View):
     def get(self, request):
         lista_ultimas_questoes = Pergunta.objects.order_by("-data_criacao")
-        contexto = {'perguntas' : lista_ultimas_questoes}
+
+        solucoes = []
+
+        if request.user.is_authenticated:
+            area = (
+                getattr(request.user, 'area_atuacao', '') or ''
+            ).strip().lower()
+
+            solucoes = (
+                SOLUCOES_IOT.get(area)
+                or SOLUCOES_IOT['geral']
+            )
+
+        contexto = {
+            'perguntas': lista_ultimas_questoes,
+            'solucoes': solucoes
+        }
+
         return render(request, 'perguntas/index.html', contexto)
+
 
 class PerguntaView(View):
     def get(self, request, pergunta_id):
