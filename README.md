@@ -52,7 +52,7 @@ O Operos é um projeto voltando a educar empresas sobre a importância de coleta
 | [Davi da Fonte Cajueiro] | [dfc@cesar.school] |
 | [Enzo Borges Barbosa de Andrade] | [ebba@cesar.school] |
 | [Oto Gonçalves frias] | [ogf@cesar.school] |
-| [Felipe Assis Ferreira dos Santos] | [fafs@cesar.school] |
+| [Felipe Assis Ferreira dos Santos](Projeto 2) | [fafs@cesar.school] |
 | [José Artur Ferreira Viana] | [jafv@cesar.school] |
 ## Membros Anteriores/Novos
 
