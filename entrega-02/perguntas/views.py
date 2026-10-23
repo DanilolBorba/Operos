@@ -1,4 +1,5 @@
 from django.shortcuts import render
+import re
 from django.http import HttpResponse, Http404
 from .models import Pergunta, Resposta
 
@@ -9,8 +10,10 @@ from django.shortcuts import redirect
 from django.urls import reverse
 
 from django.shortcuts import render, redirect
-from django.contrib.auth import login
-from .forms import FormularioCadastroUsuario
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
+from .models import UsuarioPersonalizado, ESTADO_ESCOLHA, CARGO_ESCOLHA, AREA_ATUACAO_ESCOLHA
 from app_operos.views import SOLUCOES_IOT
 
 
@@ -121,14 +124,115 @@ class InserirRespostaView(View):
 
         return redirect(reverse('perguntas:detalhe', args=[pergunta.id]))
 # Create your views here.
-
 def view_cadastro(request):
+    campos = [
+        'username', 'email', 'password1', 'password2',
+        'nome_completo', 'nome_exibicao', 'telefone', 'estado',
+        'empresa', 'cpf_cnpj', 'cargo', 'setor', 'area_atuacao',
+    ]
+    dados = {campo: '' for campo in campos}
+    erros = {}
+
     if request.method == 'POST':
-        form = FormularioCadastroUsuario(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('perguntas:index') 
-    else:
-        form = FormularioCadastroUsuario()
-    return render(request, 'perguntas/cadastro.html', {'form': form})
+        dados = {campo: (request.POST.get(campo) or '').strip() for campo in campos}
+        senha = request.POST.get('password1') or ''
+        confirmar_senha = request.POST.get('password2') or ''
+
+        if not dados['username']:
+            erros['username'] = 'Informe um nome de usuário.'
+        elif UsuarioPersonalizado.objects.filter(username=dados['username']).exists():
+            erros['username'] = 'Esse nome de usuário já está em uso.'
+
+        if not dados['email']:
+            erros['email'] = 'Informe seu e-mail.'
+        elif len(dados['email']) > 254 or not re.fullmatch(r'[^@\\s]+@[^@\\s]+\\.[^@\\s]+', dados['email']):
+            erros['email'] = 'Informe um e-mail válido.'
+
+        if not senha:
+            erros['password1'] = 'Informe uma senha.'
+        if senha != confirmar_senha:
+            erros['password2'] = 'As senhas não coincidem.'
+
+        cpf_cnpj = dados['cpf_cnpj']
+        if cpf_cnpj:
+            digitos = ''.join(filter(str.isdigit, cpf_cnpj))
+            if len(digitos) not in (11, 14):
+                erros['cpf_cnpj'] = 'O CPF deve ter 11 dígitos ou o CNPJ deve ter 14 dígitos.'
+            else:
+                dados['cpf_cnpj'] = digitos
+
+        if len(dados['nome_exibicao']) > 16:
+            erros['nome_exibicao'] = 'O nome de exibição não pode ter mais de 16 caracteres.'
+
+        opcoes = {
+            'estado': dict(ESTADO_ESCOLHA),
+            'cargo': dict(CARGO_ESCOLHA),
+            'area_atuacao': dict(AREA_ATUACAO_ESCOLHA),
+        }
+        for campo, escolhas in opcoes.items():
+            if dados[campo] and dados[campo] not in escolhas:
+                erros[campo] = 'Selecione uma opção válida.'
+
+        if len(dados['nome_completo']) > 32:
+            erros['nome_completo'] = 'O nome completo deve ter no máximo 32 caracteres.'
+        if len(dados['telefone']) > 20:
+            erros['telefone'] = 'O telefone deve ter no máximo 20 caracteres.'
+        if len(dados['empresa']) > 255:
+            erros['empresa'] = 'O nome da empresa deve ter no máximo 255 caracteres.'
+        if len(dados['setor']) > 100:
+            erros['setor'] = 'O setor deve ter no máximo 100 caracteres.'
+
+        usuario = UsuarioPersonalizado(
+            username=dados['username'],
+            email=dados['email'],
+            nome_completo=dados['nome_completo'],
+            nome_exibicao=dados['nome_exibicao'] or None,
+            telefone=dados['telefone'],
+            estado=dados['estado'],
+            empresa=dados['empresa'],
+            cpf_cnpj=dados['cpf_cnpj'],
+            cargo=dados['cargo'],
+            setor=dados['setor'],
+            area_atuacao=dados['area_atuacao'],
+        )
+
+        if senha and senha == confirmar_senha:
+            try:
+                validate_password(senha, user=usuario)
+            except ValidationError as exc:
+                erros['password1'] = ' '.join(exc.messages)
+
+        if not erros:
+            usuario.set_password(senha)
+            usuario.save()
+            login(request, usuario)
+            return redirect('perguntas:index')
+
+    contexto = {
+        'dados': dados,
+        'erros': erros,
+        'estados': ESTADO_ESCOLHA,
+        'cargos': CARGO_ESCOLHA,
+        'areas_atuacao': AREA_ATUACAO_ESCOLHA,
+    }
+    return render(request, 'perguntas/cadastro.html', contexto)
+
+
+def view_login(request):
+    erro_login = False
+    if request.method == 'POST':
+        username = (request.POST.get('username') or '').strip()
+        password = request.POST.get('password') or ''
+        usuario = authenticate(request, username=username, password=password)
+        if usuario is not None:
+            login(request, usuario)
+            destino = request.POST.get('next') or 'perguntas:index'
+            if not destino.startswith('/') or destino.startswith('//'):
+                destino = reverse('perguntas:index')
+            return redirect(destino)
+        erro_login = True
+
+    return render(request, 'perguntas/login.html', {
+        'erro_login': erro_login,
+        'next': request.GET.get('next', ''),
+    })
