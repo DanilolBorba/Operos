@@ -60,7 +60,7 @@ CARGO_ESCOLHA = [
 
 AREA_ATUACAO_ESCOLHA = [
     ('cadeia_fria', 'Cadeia fria (monitoramento de temperatura e humidade constante)'),
-    ('industria', 'Indústria'),
+    ('industria', 'Indústria 4.0'),
     ('utilities', 'Utilities (medição contínua de água, gás e energia)'),
     ('cidades_inteligentes', 'Cidades inteligentes (monitoramento urbano para clima, qualidade ambiental e mobilidade)'),
     ('edificios_inteligentes', 'Edifícios inteligentes (monitoramento de ambientes e sistemas prediais)'),
@@ -80,7 +80,7 @@ class UsuarioPersonalizado(AbstractUser):
 
     def save(auto_self, *args, **kwargs):
         if not auto_self.nome_exibicao:
-            auto_self.nome_exibicao = auto_self.nome_completo[:16]
+            auto_self.nome_exibicao = ((auto_self.nome_completo or '')[:16] or None)
         super().save(*args, **kwargs)
 
     def __str__(self):
