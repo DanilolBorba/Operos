@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='usuariopersonalizado',
             name='area_atuacao',
-            field=models.CharField(blank=True, choices=[('cadeia_fria', 'Cadeia fria (monitoramento de temperatura e humidade constante)'), ('industria', 'Indústria'), ('utilities', 'Utilities (medição contínua de água, gás e energia)'), ('cidades_inteligentes', 'Cidades inteligentes (monitoramento urbano para clima, qualidade ambiental e mobilidade)'), ('edificios_inteligentes', 'Edifícios inteligentes (monitoramento de ambientes e sistemas prediais)'), ('agronegocio', 'Agronegócio (monitoramento de condições ambientais e operacionais)')], max_length=100, null=True),
+            field=models.CharField(blank=True, choices=[('cadeia_fria', 'Cadeia fria (monitoramento de temperatura e humidade constante)'), ('industria', 'Indústria 4.0'), ('utilities', 'Utilities (medição contínua de água, gás e energia)'), ('cidades_inteligentes', 'Cidades inteligentes (monitoramento urbano para clima, qualidade ambiental e mobilidade)'), ('edificios_inteligentes', 'Edifícios inteligentes (monitoramento de ambientes e sistemas prediais)'), ('agronegocio', 'Agronegócio (monitoramento de condições ambientais e operacionais)')], max_length=100, null=True),
         ),
         migrations.AlterField(
             model_name='usuariopersonalizado',
