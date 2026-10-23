@@ -4,7 +4,7 @@
 <div class="auth-container" style="max-width: 650px; margin: 40px auto; padding: 35px; background: #ffffff; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
     <h2 style="margin-bottom: 25px; text-align: center; color: #2c3e50; font-size: 1.8em;">Criar uma Conta no Operos</h2>
 
-    {% if form.errors %}
+    {% if erros %}
         <div class="alert-danger" style="background-color: #f8d7da; color: #721c24; padding: 12px 16px; border-radius: 6px; margin-bottom: 25px; font-size: 0.9em;">
             <strong>Ops!</strong> Por favor, verifique os campos destacados abaixo.
         </div>
@@ -13,154 +13,136 @@
     <form method="post" class="auth-form" style="display: flex; flex-direction: column; gap: 20px;">
         {% csrf_token %}
 
-        <!--                                 DADOS DE ACESSO                                              -->
         <div class="form-section">
-            <h3 style="font-size: 1.1em; color: #0066cc; border-bottom: 2px solid #eef2f5; padding-bottom: 8px; margin-bottom: 15px;">1. Informações de Acesso</h3>
-            
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                <div class="form-group" style="display: flex; flex-direction: column; gap: 5px;">
-                    <label style="font-weight: 600; font-size: 0.85em; color: #444;">Usuário *</label>
-                    {{ form.username }}
-                    {% for error in form.username.errors %}<span style="color: #d9534f; font-size: 0.8em;">{{ error }}</span>{% endfor %}
+            <h3>1. Informações de Acesso</h3>
+            <div class="grid two">
+                <div class="form-group">
+                    <label for="id_username">Nome de Usuário *</label>
+                    <input id="id_username" name="username" type="text" maxlength="150" required value="{{ dados.username }}">
+                    {% if erros.username %}<span class="field-error">{{ erros.username }}</span>{% endif %}
                 </div>
-
-                <div class="form-group" style="display: flex; flex-direction: column; gap: 5px;">
-                    <label style="font-weight: 600; font-size: 0.85em; color: #444;">E-mail *</label>
-                    {{ form.email }}
-                    {% for error in form.email.errors %}<span style="color: #d9534f; font-size: 0.8em;">{{ error }}</span>{% endfor %}
+                <div class="form-group">
+                    <label for="id_email">E-mail *</label>
+                    <input id="id_email" name="email" type="email" maxlength="254" required value="{{ dados.email }}">
+                    {% if erros.email %}<span class="field-error">{{ erros.email }}</span>{% endif %}
                 </div>
             </div>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
-                <div class="form-group" style="display: flex; flex-direction: column; gap: 5px;">
-                    <label style="font-weight: 600; font-size: 0.85em; color: #444;">Senha *</label>
-                    {{ form.password1 }}
-                    {% for error in form.password1.errors %}<span style="color: #d9534f; font-size: 0.8em;">{{ error }}</span>{% endfor %}
+            <div class="grid two">
+                <div class="form-group">
+                    <label for="id_password1">Senha *</label>
+                    <input id="id_password1" name="password1" type="password" required autocomplete="new-password">
+                    {% if erros.password1 %}<span class="field-error">{{ erros.password1 }}</span>{% endif %}
                 </div>
-
-                <div class="form-group" style="display: flex; flex-direction: column; gap: 5px;">
-                    <label style="font-weight: 600; font-size: 0.85em; color: #444;">Confirmar Senha *</label>
-                    {{ form.password2 }}
-                    {% for error in form.password2.errors %}<span style="color: #d9534f; font-size: 0.8em;">{{ error }}</span>{% endfor %}
+                <div class="form-group">
+                    <label for="id_password2">Confirme sua senha *</label>
+                    <input id="id_password2" name="password2" type="password" required autocomplete="new-password">
+                    {% if erros.password2 %}<span class="field-error">{{ erros.password2 }}</span>{% endif %}
                 </div>
             </div>
         </div>
 
-        <!--                                                     DADOS PESSOAIS                                      -->
         <div class="form-section">
-            <h3 style="font-size: 1.1em; color: #0066cc; border-bottom: 2px solid #eef2f5; padding-bottom: 8px; margin-bottom: 15px;">2. Dados Pessoais</h3>
-            
-            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 15px;">
-                <div class="form-group" style="display: flex; flex-direction: column; gap: 5px;">
-                    <label style="font-weight: 600; font-size: 0.85em; color: #444;">Nome Completo</label>
-                    {{ form.nome_completo }}
-                    {% for error in form.nome_completo.errors %}<span style="color: #d9534f; font-size: 0.8em;">{{ error }}</span>{% endfor %}
+            <h3>2. Dados Pessoais</h3>
+            <div class="grid two">
+                <div class="form-group">
+                    <label for="id_nome_completo">Nome completo *</label>
+                    <input id="id_nome_completo" name="nome_completo" maxlength="32" value="{{ dados.nome_completo }}">
+                    {% if erros.nome_completo %}<span class="field-error">{{ erros.nome_completo }}</span>{% endif %}
                 </div>
-
-                <div class="form-group" style="display: flex; flex-direction: column; gap: 5px;">
-                    <label style="font-weight: 600; font-size: 0.85em; color: #444;">Nome de Exibição (Máx. 16)</label>
-                    {{ form.nome_exibicao }}
-                    {% for error in form.nome_exibicao.errors %}<span style="color: #d9534f; font-size: 0.8em;">{{ error }}</span>{% endfor %}
+                <div class="form-group">
+                    <label for="id_nome_exibicao">Nome de exibição (máx. 16)</label>
+                    <input id="id_nome_exibicao" name="nome_exibicao" maxlength="16" value="{{ dados.nome_exibicao }}">
+                    {% if erros.nome_exibicao %}<span class="field-error">{{ erros.nome_exibicao }}</span>{% endif %}
                 </div>
             </div>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-top: 15px;">
-                <div class="form-group" style="display: flex; flex-direction: column; gap: 5px; grid-column: span 2;">
-                    <label style="font-weight: 600; font-size: 0.85em; color: #444;">Telefone</label>
-                    {{ form.telefone }}
-                    {% for error in form.telefone.errors %}<span style="color: #d9534f; font-size: 0.8em;">{{ error }}</span>{% endfor %}
+            <div class="grid two">
+                <div class="form-group">
+                    <label for="id_telefone">Telefone *</label>
+                    <input id="id_telefone" name="telefone" maxlength="20" value="{{ dados.telefone }}">
+                    {% if erros.telefone %}<span class="field-error">{{ erros.telefone }}</span>{% endif %}
                 </div>
-
-                <div class="form-group" style="display: flex; flex-direction: column; gap: 5px;">
-                    <label style="font-weight: 600; font-size: 0.85em; color: #444;">Estado (UF)</label>
-                    {{ form.estado }}
-                    {% for error in form.estado.errors %}<span style="color: #d9534f; font-size: 0.8em;">{{ error }}</span>{% endfor %}
+                <div class="form-group">
+                    <label for="id_estado">Estado (UF) *</label>
+                    <select id="id_estado" name="estado">
+                        <option value="">Selecione um estado</option>
+                        {% for valor, rotulo in estados %}
+                        <option value="{{ valor }}" {% if dados.estado == valor %}selected{% endif %}>{{ rotulo }}</option>
+                        {% endfor %}
+                    </select>
+                    {% if erros.estado %}<span class="field-error">{{ erros.estado }}</span>{% endif %}
                 </div>
             </div>
         </div>
 
-        <!--                                        DADOS PROFISSIONAIS E EMPRESARIAIS                                              -->
         <div class="form-section">
-            <h3 style="font-size: 1.1em; color: #0066cc; border-bottom: 2px solid #eef2f5; padding-bottom: 8px; margin-bottom: 15px;">3. Dados Profissionais e Empresariais</h3>
-            
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                <div class="form-group" style="display: flex; flex-direction: column; gap: 5px;">
-                    <label style="font-weight: 600; font-size: 0.85em; color: #444;">Empresa</label>
-                    {{ form.empresa }}
-                    {% for error in form.empresa.errors %}<span style="color: #d9534f; font-size: 0.8em;">{{ error }}</span>{% endfor %}
+            <h3>3. Dados Profissionais e Empresariais</h3>
+            <div class="grid two">
+                <div class="form-group">
+                    <label for="id_empresa">Nome da Empresa *</label>
+                    <input id="id_empresa" name="empresa" maxlength="255" value="{{ dados.empresa }}">
+                    {% if erros.empresa %}<span class="field-error">{{ erros.empresa }}</span>{% endif %}
                 </div>
-
-                <div class="form-group" style="display: flex; flex-direction: column; gap: 5px;">
-                    <label style="font-weight: 600; font-size: 0.85em; color: #444;">CPF ou CNPJ</label>
-                    {{ form.cpf_cnpj }}
-                    {% for error in form.cpf_cnpj.errors %}<span style="color: #d9534f; font-size: 0.8em;">{{ error }}</span>{% endfor %}
+                <div class="form-group">
+                    <label for="id_cpf_cnpj">CPF ou CNPJ *</label>
+                    <input id="id_cpf_cnpj" name="cpf_cnpj" value="{{ dados.cpf_cnpj }}" inputmode="numeric">
+                    {% if erros.cpf_cnpj %}<span class="field-error">{{ erros.cpf_cnpj }}</span>{% endif %}
                 </div>
             </div>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-top: 15px;">
-                <div class="form-group" style="display: flex; flex-direction: column; gap: 5px;">
-                    <label style="font-weight: 600; font-size: 0.85em; color: #444;">Cargo</label>
-                    {{ form.cargo }}
-                    {% for error in form.cargo.errors %}<span style="color: #d9534f; font-size: 0.8em;">{{ error }}</span>{% endfor %}
+            <div class="grid three">
+                <div class="form-group">
+                    <label for="id_cargo">Cargo *</label>
+                    <select id="id_cargo" name="cargo">
+                        <option value="">Selecione um cargo *</option>
+                        {% for valor, rotulo in cargos %}
+                        <option value="{{ valor }}" {% if dados.cargo == valor %}selected{% endif %}>{{ rotulo }}</option>
+                        {% endfor %}
+                    </select>
+                    {% if erros.cargo %}<span class="field-error">{{ erros.cargo }}</span>{% endif %}
                 </div>
-
-                <div class="form-group" style="display: flex; flex-direction: column; gap: 5px;">
-                    <label style="font-weight: 600; font-size: 0.85em; color: #444;">Setor</label>
-                    {{ form.setor }}
-                    {% for error in form.setor.errors %}<span style="color: #d9534f; font-size: 0.8em;">{{ error }}</span>{% endfor %}
+                <div class="form-group">
+                    <label for="id_setor">Setor *</label>
+                    <input id="id_setor" name="setor" maxlength="100" value="{{ dados.setor }}">
+                    {% if erros.setor %}<span class="field-error">{{ erros.setor }}</span>{% endif %}
                 </div>
-
-                <div class="form-group" style="display: flex; flex-direction: column; gap: 5px;">
-                    <label style="font-weight: 600; font-size: 0.85em; color: #444;">Área de Atuação</label>
-                    {{ form.area_atuacao }}
-                    {% for error in form.area_atuacao.errors %}<span style="color: #d9534f; font-size: 0.8em;">{{ error }}</span>{% endfor %}
+                <div class="form-group">
+                    <label for="id_area_atuacao">Área atuante da Empresa*</label>
+                    <select id="id_area_atuacao" name="area_atuacao">
+                        <option value="">Selecione uma área</option>
+                        {% for valor, rotulo in areas_atuacao %}
+                        <option value="{{ valor }}" {% if dados.area_atuacao == valor %}selected{% endif %}>{{ rotulo }}</option>
+                        {% endfor %}
+                    </select>
+                    {% if erros.area_atuacao %}<span class="field-error">{{ erros.area_atuacao }}</span>{% endif %}
                 </div>
             </div>
         </div>
 
-        <button type="submit" class="btn-submit" style="margin-top: 15px; padding: 14px; background-color: #0066cc; color: #ffffff; border: none; border-radius: 6px; font-size: 1em; font-weight: bold; cursor: pointer; transition: background 0.2s;">
-            Concluir Cadastro
-        </button>
+        <button type="submit" class="btn-submit" style="margin-top: 15px; padding: 14px; background-color: #0066cc; color: #ffffff; border: none; border-radius: 6px; font-size: 1em; font-weight: bold; cursor: pointer;">Concluir Cadastro</button>
     </form>
 
     <div style="margin-top: 25px; text-align: center; font-size: 0.9em; color: #666;">
-        Já tem uma conta? <a href="{% url 'perguntas:login' %}" style="color: #0066cc; text-decoration: none; font-weight: bold;">Faça login aqui</a>
+        Já tem uma conta? <a href="{% url 'perguntas:login' %}">Faça login aqui!</a>
     </div>
 </div>
 
 <style>
-    .auth-form,
-    .auth-form * {
-        box-sizing: border-box;
-    }
-
-    .auth-form label,
-    .auth-form input,
-    .auth-form select,
-    .auth-form textarea,
-    .auth-form button {
-        font-family: inherit;
-    }
-
-    .auth-form input:not([type="checkbox"]):not([type="radio"]),
-    .auth-form select,
-    .auth-form textarea {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-        font-size: 0.85em;
-    }
-
-    .auth-form .form-section,
-    .auth-form .form-group {
-        min-width: 0;
-    }
+    .auth-form, .auth-form * { box-sizing: border-box; font-family: inherit; }
+    .auth-form .grid { display: grid; gap: 15px; margin-top: 15px; }
+    .auth-form .two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .auth-form .three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .auth-form .form-section h3 { font-size: 1.1em; color: #0066cc; border-bottom: 2px solid #eef2f5; padding-bottom: 8px; margin-bottom: 15px; }
+    .auth-form .form-group { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+    .auth-form label { font-weight: 600; font-size: .797em; color: #444; }
+    .auth-form input, .auth-form select { width: 100%; min-width: 0; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: .9em; }
+    .field-error { color: #d9534f; font-size: .8em; }
 
     @media (max-width: 650px) {
-        .auth-form .form-section > div {
-            grid-template-columns: minmax(0, 1fr) !important;
+        .auth-form .two, .auth-form .three {
+            grid-template-columns: minmax(0, 1fr);
         }
-
         .auth-container {
             max-width: 100% !important;
             margin: 20px auto !important;
@@ -168,5 +150,4 @@
         }
     }
 </style>
-
 {% endblock %}
