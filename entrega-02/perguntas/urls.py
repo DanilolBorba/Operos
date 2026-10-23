@@ -1,7 +1,7 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from .views import view_cadastro
-from . import views 
+from .views import view_cadastro, view_login
+from . import views
 
 app_name = 'perguntas'
 urlpatterns = [
@@ -21,7 +21,7 @@ urlpatterns = [
 
     #partes login
     path('cadastro/', view_cadastro, name='cadastro'),
-    path('login/', auth_views.LoginView.as_view(template_name='perguntas/login.html', next_page='perguntas:index'), name='login'),
+    path('login/', view_login, name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='perguntas:index'), name='logout'),
 
 ]
