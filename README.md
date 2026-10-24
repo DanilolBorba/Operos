@@ -119,7 +119,13 @@ O Operos é um projeto voltando a educar empresas sobre a importância de coleta
 ---
 ### (placeholder historias escolhidas)
 ---
-### (placeholder foto backlog da sprint)
+
+### Foto Quadro da Sprint
+![foto quadro spt3](imagens/imagem_2026-10-23_221402020.png)
+---
+### Foto Backlog da Sprint
+![foto backlog spt3](imagens/imagem_2026-10-23_220824405.png)
+
 ---
 ### (placeholder screencast)
 
@@ -146,4 +152,6 @@ O Operos é um projeto voltando a educar empresas sobre a importância de coleta
 | [João Guilherme Vanderley Vasconcelos] | [jgvv@cesar.school] | [Entrada: 20/08] [Saida: 31/08] |
 | [Oto Gonçalves frias] | [ogf@cesar.school] | [Entrada: 31/08] |
 
+# Uso de IA
 
+A utilização de ferramentas de IA vem sendo usado para revisão de código e para propósitos pedagógicos. 
