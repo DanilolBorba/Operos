@@ -11,8 +11,6 @@ O Operos é um projeto voltando a educar empresas sobre a importância de coleta
 - Python
 - Django
 
-<br>
-
 ---
 ---
 ## Entrega 01
@@ -53,15 +51,7 @@ O Operos é um projeto voltando a educar empresas sobre a importância de coleta
             - **E** deve apresentar funcionalidades e benefícios da adoção dela para o cliente
             - **E** precisa usar uma linguagem amiga ao público geral
 
-3. **HU03** - Como **futuro cliente**, gostaria de assistir a vídeos demonstrativos sobre as soluções, para compreender melhor seu funcionamento na prática.
-    - **Descrição:** ...
-    - **Caso I:** ...
-        - **Dado que** ...
-        - **Quando** ...
-        - **Então** ...
-            - **E** ...
-
-4. **HU04** - Como **usuário logado**, gostaria de informar os principais problemas e necessidades da minha empresa, para receber soluções de IoT adequadas.
+4. **HU03** - Como **usuário logado**, gostaria de informar os principais problemas e necessidades da minha empresa, para receber soluções de IoT adequadas.
     - **Descrição:** O sistema deve permitir que um cliente autenticado informe as características de sua empresa e suas principais necessidades operacionais, validando os dados fornecidos e registrando as informações necessárias para identificar soluções de IoT compatíveis com seu contexto empresarial. 
     - **Caso I:** O preenchimento e envio dos requisitos é feito pelo cliente com sucesso
         - **Dado que** m cliente está logado no sistema e informa suas necessidades a serem atendidas
@@ -74,15 +64,7 @@ O Operos é um projeto voltando a educar empresas sobre a importância de coleta
         - **Então** o sistema deve impedir de que sua requisição seja enviada
             - **E** deve retornar um feedback visual de que o envio não pôde ser feito porque existe um ou mais campos vazios
 
-5. **HU05** - Como **usuário logado**, gostaria de receber recomendações de soluções de IoT com base nas informações fornecidas, para identificar as alternativas mais adequadas ao meu negócio.
-    - **Descrição:** ...
-    - **Caso I:** ...
-        - **Dado que** ...
-        - **Quando** ...
-        - **Então** ...
-            - **E** ...
-
-6. **HU06** - Como **usuário logado**, gostaria de solicitar um serviço de IoT após visualizar as soluções recomendadas, para iniciar o processo de contratação.
+6. **HU04** - Como **usuário logado**, gostaria de solicitar um serviço de IoT após visualizar as soluções recomendadas, para iniciar o processo de contratação.
     - **Descrição:** Permitir que o usuário solicite um serviço de IoT após ver as soluções recomendadas para iniciar o processo da contratação 
     - **Caso I:**  A solicitação do serviço para a empresa é feita com sucesso
         - **Dado que** o cliente está logado e visualiza detalhes de uma solução de IoT recomendada ou disponível
@@ -95,7 +77,7 @@ O Operos é um projeto voltando a educar empresas sobre a importância de coleta
 
 
 
-7. **HU07** - Como **futuro cliente**, gostaria de realizar meu cadastro preenchendo todos os dados necessários para ter acesso aos recursos do site
+7. **HU05** - Como **futuro cliente**, gostaria de realizar meu cadastro preenchendo todos os dados necessários para ter acesso aos recursos do site
     - **Descrição:** sistema deve disponibilizar um formulário de cadastro estruturado que colete as informações essenciais do usuário, validando regras cruciais como o limite de caracteres para o nome de exibição e a verificação do formato do CPF ou CNPJ. Caso o preenchimento esteja correto, a conta deve ser criada e o usuário redirecionado; caso contrário, o sistema deve apontar os erros de validação correspondentes.
     - **Caso I:** cadastro feito com sucesso
         - **Dado que** cliente está na pagina de cadastro
@@ -119,7 +101,7 @@ O Operos é um projeto voltando a educar empresas sobre a importância de coleta
             - **E** o sistema exibe uma mensagem de erro informando que o e-mail já está em uso.
 
 
-8. **HU08** - Como **admin**, gostaria de visualizar a quantidade de solicitações de serviços divididas pelo porte das empresas (pequeno, médio e grande), para identificar quais segmentos possuem maior demanda.
+8. **HU06** - Como **admin**, gostaria de visualizar a quantidade de solicitações de serviços divididas pelo porte das empresas (pequeno, médio e grande), para identificar quais segmentos possuem maior demanda.
     - **Descrição:** O sistema deve disponibilizar aos administradores um painel de monitoramento que apresente a quantidade de solicitações de serviços de IoT agrupadas pelo porte das empresas (pequeno, médio e grande), permitindo identificar a distribuição da demanda entre os segmentos empresariais e apoiando a tomada de decisões.
     - **Caso I:** Funcionário consegue ver as solicitações com sucesso
         - **Dado que** o funcionário está logado e tem permissão para acessar o painel administrativo
