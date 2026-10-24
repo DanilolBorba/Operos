@@ -47,7 +47,7 @@
             <div class="grid two">
                 <div class="form-group">
                     <label for="id_nome_completo">Nome completo *</label>
-                    <input id="id_nome_completo" name="nome_completo" maxlength="32" value="{{ dados.nome_completo }}">
+                    <input id="id_nome_completo" name="nome_completo" maxlength="32" required value="{{ dados.nome_completo }}">
                     {% if erros.nome_completo %}<span class="field-error">{{ erros.nome_completo }}</span>{% endif %}
                 </div>
                 <div class="form-group">
@@ -60,7 +60,7 @@
             <div class="grid two">
                 <div class="form-group">
                     <label for="id_telefone">Telefone *</label>
-                    <input id="id_telefone" name="telefone" maxlength="20" value="{{ dados.telefone }}">
+                    <input id="id_telefone" name="telefone" maxlength="20" required value="{{ dados.telefone }}">
                     {% if erros.telefone %}<span class="field-error">{{ erros.telefone }}</span>{% endif %}
                 </div>
                 <div class="form-group">
@@ -104,12 +104,12 @@
                 </div>
                 <div class="form-group">
                     <label for="id_setor">Setor *</label>
-                    <input id="id_setor" name="setor" maxlength="100" value="{{ dados.setor }}">
+                    <input id="id_setor" name="setor" maxlength="100" required value="{{ dados.setor }}">
                     {% if erros.setor %}<span class="field-error">{{ erros.setor }}</span>{% endif %}
                 </div>
                 <div class="form-group">
                     <label for="id_area_atuacao">Área atuante da Empresa*</label>
-                    <select id="id_area_atuacao" name="area_atuacao">
+                    <select id="id_area_atuacao" name="area_atuacao" required>
                         <option value="">Selecione uma área</option>
                         {% for valor, rotulo in areas_atuacao %}
                         <option value="{{ valor }}" {% if dados.area_atuacao == valor %}selected{% endif %}>{{ rotulo }}</option>

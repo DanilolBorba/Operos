@@ -3,6 +3,8 @@ import re
 from django.http import HttpResponse, Http404
 from .models import Pergunta, Resposta
 
+from django.core.validators import validate_email
+
 from django.views import View
 
 from django.utils import timezone
@@ -138,6 +140,24 @@ def view_cadastro(request):
         senha = request.POST.get('password1') or ''
         confirmar_senha = request.POST.get('password2') or ''
 
+        
+        campos_obrigatorios = [
+            'username',
+            'email',
+            'nome_completo',
+            'telefone',
+            'estado',
+            'empresa',
+            'cpf_cnpj',
+            'cargo',
+            'setor',
+            'area_atuacao',
+        ]
+
+        for campo in campos_obrigatorios:
+            if not dados[campo]:
+                erros[campo] = 'Este campo é obrigatório.'
+
         if not dados['username']:
             erros['username'] = 'Informe um nome de usuário.'
         elif UsuarioPersonalizado.objects.filter(username=dados['username']).exists():
@@ -145,24 +165,45 @@ def view_cadastro(request):
 
         if not dados['email']:
             erros['email'] = 'Informe seu e-mail.'
-        elif len(dados['email']) > 254 or not re.fullmatch(r'[^@\\s]+@[^@\\s]+\\.[^@\\s]+', dados['email']):
-            erros['email'] = 'Informe um e-mail válido.'
+        elif len(dados['email']) > 254:
+            erros['email'] = 'O e-mail deve ter no máximo 254 caracteres.'
+        elif UsuarioPersonalizado.objects.filter(
+            email__iexact=dados['email']
+        ).exists():
+            erros['email'] = 'Este e-mail já está cadastrado.'
+        else:
+            try:
+                validate_email(dados['email'])
+            except ValidationError:
+                erros['email'] = 'Informe um e-mail válido.'
+
 
         if not senha:
             erros['password1'] = 'Informe uma senha.'
         if senha != confirmar_senha:
             erros['password2'] = 'As senhas não coincidem.'
 
+
         cpf_cnpj = dados['cpf_cnpj']
+
         if cpf_cnpj:
             digitos = ''.join(filter(str.isdigit, cpf_cnpj))
+
             if len(digitos) not in (11, 14):
-                erros['cpf_cnpj'] = 'O CPF deve ter 11 dígitos ou o CNPJ deve ter 14 dígitos.'
+                erros['cpf_cnpj'] = (
+                    'Informe um CPF com 11 dígitos '
+                    'ou um CNPJ com 14 dígitos.'
+                )
+            elif len(set(digitos)) == 1:
+                erros['cpf_cnpj'] = 'Informe um CPF/CNPJ válido.'
             else:
                 dados['cpf_cnpj'] = digitos
 
+        
         if len(dados['nome_exibicao']) > 16:
-            erros['nome_exibicao'] = 'O nome de exibição não pode ter mais de 16 caracteres.'
+            erros['nome_exibicao'] = (
+                'O nome de exibição não pode ter mais de 16 caracteres.'
+            )
 
         opcoes = {
             'estado': dict(ESTADO_ESCOLHA),
