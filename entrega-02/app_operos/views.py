@@ -125,7 +125,29 @@ SOLUCOES_IOT = {
 
 
 def index(request):
-    return HttpResponse("<h1>testando</h1>")
+    nomes_areas = {
+        'cadeia_fria': 'Cadeia Fria',
+        'industria': 'Indústria 4.0',
+        'utilities': 'Utilities',
+        'cidades_inteligentes': 'Cidades Inteligentes',
+        'edificios_inteligentes': 'Edifícios Inteligentes',
+        'agronegocio': 'Agronegócio',
+        'geral': 'Soluções Gerais'
+    }
+
+    grupos = []
+
+    for area, solucoes in SOLUCOES_IOT.items():
+        grupos.append({
+            'nome': nomes_areas[area],
+            'solucoes': solucoes
+        })
+
+    return render(
+        request,
+        'app_operos/catalogo.html',
+        {'grupos': grupos}
+    )
 
 
 @login_required(login_url='perguntas:login')
