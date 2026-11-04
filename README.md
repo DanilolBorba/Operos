@@ -74,8 +74,8 @@ https://operos-a7kn.onrender.com
         - **Então** o sistema deve receber os dados fornecidos
             - **E** E registrar a solicitação ligada ao cliente e à solução escolhida
             - **E** deve armazenar os dados necessários para que a equipe responsável possa prosseguir com o atendimento 
-            - **E** retornar um feedback visual de que seu pedido foi registrado (tipo pop up por ex)
-            - **E** informar um protocolo 
+            - **E** retornar um feedback visual de que seu pedido foi feito, juntamente com um protocolo
+
 
 
 
@@ -132,7 +132,7 @@ https://operos-a7kn.onrender.com
             - **E** retornar um feedback visual de que seu pedido foi registrado (tipo pop up por ex)
             - **E** informar um protocolo 
 
-- **HU05** - Como **futuro cliente**, gostaria de realizar meu cadastro preenchendo todos os dados necessários para ter acesso aos recursos do site.                             ==========================OK=======================
+- **HU05** - Como **futuro cliente**, gostaria de realizar meu cadastro preenchendo todos os dados necessários para ter acesso aos recursos do site.                             
     - **Descrição:** sistema deve disponibilizar um formulário de cadastro estruturado que colete as informações essenciais do usuário, validando regras cruciais como o limite de caracteres para o nome de exibição e a verificação do formato do CPF ou CNPJ. Caso o preenchimento esteja correto, a conta deve ser criada e o usuário redirecionado; caso contrário, o sistema deve apontar os erros de validação correspondentes.
     - **Caso I:** cadastro feito com sucesso
         - **Dado que** cliente está na pagina de cadastro
