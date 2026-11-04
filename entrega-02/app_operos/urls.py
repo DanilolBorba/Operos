@@ -3,6 +3,6 @@ from . import views
 app_name = 'app_operos' 
 
 urlpatterns = [
-    path("", views.index),
+    path("", views.index, name="index"),
     path('solicitar/', views.solicitar_servico, name='solicitar_servico'),
 ]
