@@ -18,9 +18,36 @@
 
         {% for solucao in grupo.solucoes %}
 
-            <div class="homebox">
+             <div class="homebox">
                 <h3>{{ solucao.nome }}</h3>
                 <p>{{ solucao.descricao }}</p>
+
+                {% if solucao.funcionalidades %}
+                    <h4>Funcionalidades</h4>
+                    <ul>
+                        {% for item in solucao.funcionalidades %}
+                            <li>{{ item }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                {% if solucao.aplicacoes %}
+                    <h4>Aplicações</h4>
+                    <ul>
+                        {% for item in solucao.aplicacoes %}
+                            <li>{{ item }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                {% if solucao.beneficios %}
+                    <h4>Benefícios</h4>
+                    <ul>
+                        {% for item in solucao.beneficios %}
+                            <li>{{ item }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
             </div>
 
         {% endfor %}
