@@ -1,0 +1,36 @@
+
+{% extends 'perguntas/base.html' %}
+
+{% block content %}
+
+<h1>Soluções IoT</h1>
+
+<p>
+    Conheça as soluções de Internet das Coisas
+    disponíveis para diferentes áreas de atuação.
+</p>
+
+{% for grupo in grupos %}
+
+    <section class="grupo-solucoes">
+
+        <h2>{{ grupo.nome }}</h2>
+
+        {% for solucao in grupo.solucoes %}
+
+            <div class="homebox">
+                <h3>{{ solucao.nome }}</h3>
+                <p>{{ solucao.descricao }}</p>
+            </div>
+
+        {% endfor %}
+
+    </section>
+
+{% empty %}
+
+    <p>Nenhuma solução disponível no momento.</p>
+
+{% endfor %}
+
+{% endblock %}
