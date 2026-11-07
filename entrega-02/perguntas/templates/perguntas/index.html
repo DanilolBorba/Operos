@@ -1,6 +1,6 @@
 
 {% extends "perguntas/base.html" %}
-
+{% load static %}
 {% block content %}
 
 <h1 class="line typing-animation">Conheça a Revolução.</h1>
@@ -53,66 +53,78 @@
         continuamente por sensores conectados.
     </p>
 
-    <ul>
-        <li>
-            <strong>Redução de custos:</strong>
-            ajuda a identificar desperdícios de energia,
-            água e outros recursos.
-        </li>
+    <div class="container-secund">
+        
+        <!-- reducao custos -->
+        <div class="container-terciario">
+            <img src="{% static 'imagens_gerais/economizar-cofrinho.png' %}" class="container-placeholder-img">
+            <div class="container-terciario-texto">
+                <p><b>Redução de custos:</b> Otimização de processos e uso eficiente de recursos energéticos e operacionais.</p>
+            </div>
+        </div>
 
-        <li>
-            <strong>Prevenção de falhas:</strong>
-            permite identificar comportamentos incomuns
-            em máquinas e equipamentos.
-        </li>
+        <!-- prevencao de falhas -->
+        <div class="container-terciario">
+            <img src="{% static 'imagens_gerais/prevencao-falhas.png' %}" class="container-placeholder-img">
+            <div class="container-terciario-texto">
+                <p><b>Prevenção de falhas:</b> Permite identificar comportamentos incomuns em máquinas e equipamentos.</p>
+            </div>
+        </div>
 
-        <li>
-            <strong>Maior produtividade:</strong>
-            facilita o acompanhamento de processos
-            e a identificação de problemas operacionais.
-        </li>
+        <!-- produtividade -->
+        <div class="container-terciario">
+            <img src="{% static 'imagens_gerais/produtividade.png' %}" class="container-placeholder-img">
+            <div class="container-terciario-texto">
+                <p><b>Maior produtividade:</b> Facilita o acompanhamento de processos e a identificação de problemas operacionais.</p>
+            </div>
+        </div>
 
-        <li>
-            <strong>Tomada de decisões:</strong>
-            fornece informações que ajudam gestores
-            a planejar melhorias em suas empresas.
-        </li>
-    </ul>
+        <!-- decisao -->
+        <div class="container-terciario">
+            <img src="{% static 'imagens_gerais/decision-making.png' %}" class="container-placeholder-img">
+            <div class="container-terciario-texto">
+                <p><b>Tomada de decisões:</b> Fornece informações que ajudam gestores a planejar melhorias em suas empresas.</p>
+            </div>
+        </div>
+    </div>
 
     <h2>Quais dados podem ser coletados?</h2>
 
     <p>
-        Os dispositivos IoT podem monitorar diferentes
-        indicadores, dependendo das necessidades
-        de cada empresa.
+        Dispositivos IoT podem monitorar diferentes
+        métricas, dependendo da necessidade
+        de cada empresa. Os dados mais comuns a serem captados são:
     </p>
 
-    <ul>
-        <li>
-            <strong>Temperatura e umidade:</strong>
-            importantes para armazenamento de produtos
-            e controle de ambientes.
-        </li>
+    <div class="container-secund">
+        <div class="container-terciario">
+            <img src="{% static 'imagens_gerais/temp-umidade.png' %}" class="container-placeholder-img">
+            <div class="container-terciario-texto">
+                <p><b>Temperatura e umidade: </b> importantes para armazenamento de produtose controle de ambientes.</p>
+            </div>
+        </div>
 
-        <li>
-            <strong>Consumo de energia:</strong>
-            permite acompanhar o uso de eletricidade
-            e identificar possíveis desperdícios.
-        </li>
+        <div class="container-terciario">
+            <img src="{% static 'imagens_gerais/electrical.png' %}" class="container-placeholder-img">
+            <div class="container-terciario-texto">
+                <p><b>Consumo de energia: </b>permite acompanhar o uso de eletricidadee identificar possíveis desperdícios. </p>
+            </div>
+        </div>
 
-        <li>
-            <strong>Funcionamento de máquinas:</strong>
-            ajuda a monitorar condições operacionais
-            e identificar anomalias.
-        </li>
+        <div class="container-terciario">
+            <img src="{% static 'imagens_gerais/maquinario.png' %}" class="container-placeholder-img">
+            <div class="container-terciario-texto">
+                <p><b>Funcionamento de máquinas: </b>ajuda a monitorar condições operacionais e identificar anomalias.  </p>
+            </div>
+        </div>
 
-        <li>
-            <strong>Consumo de água:</strong>
-            auxilia no acompanhamento de recursos
-            e na identificação de possíveis vazamentos.
-        </li>
-    </ul>
-
+        <div class="container-terciario">
+            <img src="{% static 'imagens_gerais/consumo-agua.png' %}" class="container-placeholder-img">
+            <div class="container-terciario-texto">
+                <p><b>Consumo de água: </b>auxilia no acompanhamento de recursos e na identificação de possíveis vazamentos.</p>
+            </div>
+        </div>
+    </div>
 </section>
 
 {% if user.is_authenticated %}
