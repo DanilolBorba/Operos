@@ -38,39 +38,39 @@ nav a:hover {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-    .container-secund{
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-        margin-top: 20px;
-    }
+.container-secund{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
 
-    .container-terciario{
-        background-color: white; 
-        border-radius: 8px; 
-        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-        border: 1px solid #e0e0e0;
-        padding: 20px;
-        
-        /*layout interno*/
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
+.container-terciario{
+    background-color: white; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    
+    /*layout interno*/
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
 
-        .container-terciario img, .container-placeholder-img {
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            object-fit: cover;
-            flex-shrink: 0;
-        }
+.container-terciario img, .container-placeholder-img {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
 
-        .container-terciario-texto {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
+.container-terciario-texto {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
 
 button, input[type="submit"] {
     background-color: #2d6cdf;
