@@ -41,7 +41,6 @@ https://operos-a7kn.onrender.com
         - **Quando** ele entrar na página home e for lendo ela
         - **Então** o site deve mostrar de maneira clara sobre o conceito de IoT
             - **E** deve destacar os benefícios e importância de seu uso em diversas métricas, especialmente para a parte de coleta de dados
-            - **E** deve apresentar exemplos claros com vídeos
 
 2. **HU02** - Como futuro cliente, gostaria de visualizar as soluções de IoT disponíveis, para conhecer suas funcionalidades e benefícios.
     - **Descrição:** sistema deve apresentar as soluções de IoT disponíveis, descrevendo suas funcionalidades, aplicações e benefícios de maneira organizada e compreensível, permitindo que futuros clientes identifiquem quais alternativas podem atender às necessidades de suas empresas.
@@ -175,6 +174,19 @@ https://operos-a7kn.onrender.com
 
 ---
 ### (placeholder screencast)
+
+---
+---
+## Entrega 04
+
+### Histórias escolhidas:
+
+(historias aqui)
+
+---
+### [placeholder quadro da sprint]
+---
+### [placeholder screencast]
 
 ---
 ---
