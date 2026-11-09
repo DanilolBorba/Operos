@@ -211,6 +211,10 @@ https://operos-a7kn.onrender.com
 | [João Guilherme Vanderley Vasconcelos] | [jgvv@cesar.school] | [Entrada: 20/08] [Saida: 31/08] |
 | [Oto Gonçalves frias] | [ogf@cesar.school] | [Entrada: 31/08] |
 
+# Saiba como contribuir com o projeto
+
+Gostou do nosso projeto e quer nos ajudar com algo, quer fazer uma sugestão ou relatar um bug? Acesse [este link](https://github.com/DanilolBorba/Operos/blob/main/CONTRIBUTING.md) para mais informações de como transmitir sua ideia até nós!
+
 # Uso de IA
 
 A utilização de ferramentas de IA vem sendo usado para revisão de código e para propósitos pedagógicos. 
