@@ -150,4 +150,8 @@ MAILERS = {
 
 LOGIN_REDIRECT_URL = '/'
 
-AUTH_USER_MODEL = 'perguntas.UsuarioPersonalizado'  
+AUTH_USER_MODEL = 'perguntas.UsuarioPersonalizado'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
