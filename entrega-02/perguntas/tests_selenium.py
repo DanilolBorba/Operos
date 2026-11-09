@@ -7,41 +7,29 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
-
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
+from selenium.webdriver.support.ui import Select  
 from webdriver_manager.chrome import ChromeDriverManager
 
 import time
 
-from perguntas.models import Pergunta
-
-
+from perguntas.models import UsuarioPersonalizado, Pergunta  
+from app_operos.models import Solicitacao  
 
 
 class BaseTestCase(StaticLiveServerTestCase):
     """
-    Classe-base que inicializa e encerra o Chrome em modo headless
-    (sem interface gráfica) antes e depois de cada teste.
-
-    StaticLiveServerTestCase sobe um servidor HTTP temporário em uma 
-    porta aleatória na própria máquina que está rodando os testes, usando 
-    um banco de dados de teste isolado, e disponibiliza self.live_server_url 
-    para que o Selenium possa acessá-lo.
-
-    live_server_url aponta sempre para localhost. Ex: http://127.0.0.1:54321
-    Esse servidor existe apenas durante a execução dos testes e é destruído 
-    logo depois. 
-
+    Classe-base que inicializa e encerra o Chrome antes e depois dos testes.
+    O StaticLiveServerTestCase disponibiliza um servidor temporário e um
+    banco de dados isolado para cada teste.
     """
-     
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
 
         opts = Options()
-        # opts.add_argument("--headless")
         opts.add_argument("--no-sandbox")
         opts.add_argument("--disable-dev-shm-usage")
         opts.add_argument("--disable-gpu")
@@ -49,8 +37,11 @@ class BaseTestCase(StaticLiveServerTestCase):
 
         service = Service(ChromeDriverManager().install())
         cls.driver = webdriver.Chrome(service=service, options=opts)
-
         cls.wait = WebDriverWait(cls.driver, 10)
+
+    def setUp(self):  
+        super().setUp()  
+        self.driver.delete_all_cookies()  
 
     @classmethod
     def tearDownClass(cls):
@@ -58,208 +49,163 @@ class BaseTestCase(StaticLiveServerTestCase):
             cls.driver.quit()
         super().tearDownClass()
 
-    # -------------------------------------------------------------------------
-    # Métodos utilitários reutilizados pelos testes
-    # -------------------------------------------------------------------------
+    def abrir_pagina(self, caminho="/"):  #abre uma url relativa ao servidor temporário do teste 
+        self.driver.get(self.live_server_url + caminho)  
 
-    def abrir_pagina(self, caminho="/forum/"):
-        """Navega para uma URL relativa ao servidor de teste."""
-        self.driver.get(self.live_server_url + caminho)
+    def criar_usuario(self, username, email, senha="SenhaForte#2026", **dados):  
+        return UsuarioPersonalizado.objects.create_user(  
+            username=username,  
+            email=email,  
+            password=senha,  
+            nome_completo=dados.get("nome_completo", "Pessoa Teste"),  
+            nome_exibicao=dados.get("nome_exibicao", "Pessoa"),  
+            telefone=dados.get("telefone", "81987654321"),  
+            estado=dados.get("estado", "PE"),  
+            empresa=dados.get("empresa", "Empresa Teste"),  
+            cpf_cnpj=dados.get("cpf_cnpj", "12345678901"),  
+            cargo=dados.get("cargo", "ceo"),  
+            setor=dados.get("setor", "Tecnologia"),  
+            area_atuacao=dados.get("area_atuacao", "industria"),  
+        )  
 
-    def criar_pergunta_via_model(
-        self,
-        titulo="Título de teste",
-        detalhe="Detalhe da pergunta de teste.",
-        tentativa="Tentativa de solução.",
-        usuario="Equipe de engenheiros de testes",
-    ):
-        """Cria uma Pergunta diretamente no banco — útil para preparar o estado
-        do sistema antes de um teste, sem depender da UI de inserção."""
-        return Pergunta.objects.create(
-            titulo=titulo,
-            detalhe=detalhe,
-            tentativa=tentativa,
-            data_criacao=timezone.now(),
-            usuario=usuario,
-        )
+    def fazer_login_pelo_navegador(self, username, senha="SenhaForte#2026"):  
+        self.abrir_pagina("/login/")  
+        self.wait.until(EC.presence_of_element_located((By.NAME, "username"))).send_keys(username)  
+        self.driver.find_element(By.NAME, "password").send_keys(senha)  
+        self.driver.find_element(By.CSS_SELECTOR, "form.auth-form button[type='submit']").click()  
+        self.wait.until(EC.url_to_be(self.live_server_url + "/"))  
 
-    def criar_resposta_via_model(self, pergunta, texto="Resposta de teste.", usuario="respondedor"):
-        """Cria uma Resposta diretamente no banco."""
-        return pergunta.resposta_set.create(
-            texto=texto,
-            data_criacao=timezone.now(),
-            usuario=usuario,
-        )
+    def preencher_cadastro(self, username, email, **dados):   
+        valores = {  
+            "username": username,  
+            "email": email,  
+            "password1": "SenhaForte#2026",  
+            "password2": "SenhaForte#2026",  
+            "nome_completo": "Pessoa Teste",  
+            "nome_exibicao": "Pessoa",  
+            "telefone": "81987654321",  
+            "estado": "PE",  
+            "empresa": "Empresa Teste",  
+            "cpf_cnpj": "12345678901",  
+            "cargo": "ceo",  
+            "setor": "Tecnologia",  
+            "area_atuacao": "industria",  
+        }  
+        valores.update(dados)  
+        self.abrir_pagina("/cadastro/")  
+        for nome, valor in valores.items():  
+            campo = self.wait.until(EC.presence_of_element_located((By.NAME, nome)))  
+            if campo.tag_name.lower() == "select":  
+                Select(campo).select_by_value(valor)  
+            else:  
+                if nome == "nome_exibicao" and len(valor) > 16:  
+                    self.driver.execute_script("arguments[0].removeAttribute('maxlength');", campo)  
+                campo.send_keys(valor)  
+        self.driver.find_element(By.CSS_SELECTOR, "form.auth-form button[type='submit']").click()  
 
-# dica: colocar a numeração dos testes nas classes e métodos indica 
-# a ordem de execução (o unittest roda os testes em ordem alfabética).
-#  Embora os testes definidos aqui sejam todos independentes
-# e possam executar em qualquer ordem, ordenar a execução ajuda a 
-# visualizar o processo de testes e a criação do screencast. 
-class Teste_01_PaginaInicial(BaseTestCase):
-    
-    """Testa a listagem de perguntas na página inicial do fórum."""
+    def fazer_login_administrativo(self, username, senha="SenhaForte#2026"):  
+        self.abrir_pagina("/admin/login/")  
+        self.wait.until(EC.presence_of_element_located((By.NAME, "username"))).send_keys(username)  
+        self.driver.find_element(By.NAME, "password").send_keys(senha)  
+        self.driver.find_element(By.TAG_NAME, "form").submit()  
+        self.wait.until(EC.url_contains("/admin/"))  
 
-    def test_01_deve_carregar_pagina_inicial_sem_perguntas(self):
-        print("Teste 01: Visualização da página inicial sem perguntas.")
+class testeH4_solicitacaoServico(BaseTestCase):  #teste hist 4 solicitação de serviço IoT 
 
-        # abre a página inicial do fórum
-        self.abrir_pagina("/forum/")
+    def teste4_solicitacaoServico_com_sucesso(self):  
+        usuario = self.criar_usuario("cliente_hu04", "cliente.hu04@example.com")  
+        self.fazer_login_pelo_navegador(usuario.username)  
+        formulario = self.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, ".solucao-card form")))  
+        nome_servico = formulario.find_element(By.NAME, "servico").get_attribute("value")  
+        Select(formulario.find_element(By.NAME, "porte_empresa")).select_by_value("medio")  
+        formulario.find_element(By.NAME, "descricao").send_keys("Necessidade de monitoramento para teste automatizado.")  
+        formulario.find_element(By.CSS_SELECTOR, "button[type='submit']").click()  
+        self.wait.until(EC.text_to_be_present_in_element((By.TAG_NAME, "body"), "Solicitação registrada com sucesso!"))  
+        body = self.driver.find_element(By.TAG_NAME, "body")  
+        solicitacao = Solicitacao.objects.get(usuario=usuario, servico=nome_servico)  
+        self.assertIn(nome_servico, body.text)  
+        self.assertIn("Médio", body.text)  
+        self.assertIn("Protocolo:", body.text)  
+        self.assertIn(str(solicitacao.protocolo), body.text)  
 
-        body = self.wait.until(
-            EC.presence_of_element_located((By.TAG_NAME, "body"))
-        )
-
-          # verifica se aparece a mensagem de nenhuma pergunta disponível
-        self.assertIn("Nenhuma pergunta disponível", body.text)
-       
-      
-        time.sleep(3)  # Apenas para visualizar o teste, pode ser removido
-        
-
-    def test_02_deve_carregar_pagina_inicial_com_perguntas(self):
-
-        print("Teste 02: Visualização da página inicial com uma pergunta cadastrada.")
-        # Cria uma pergunta no banco de dados
-        self.criar_pergunta_via_model()
-
-        # abre a página inicial do fórum
-        self.abrir_pagina("/forum/")
-
-        body = self.wait.until(
-            EC.presence_of_element_located((By.TAG_NAME, "body"))
-        )
-
-        # verifica se a pergunta criada aparece na página
-        self.assertIn("Título de teste", body.text)
-
-        time.sleep(3)  # Apenas para visualizar o teste, pode ser removido
-
-
-    def test_03_deve_carregar_pagina_inicial_com_tres_perguntas_cadastradas(self):
-       
-        print("Teste 03: Visualização da página inicial com três perguntas cadastradas.")
-        
-        titulos = [
-            "Como usar list comprehension em Python?",
-            "O que é uma closure em JavaScript?",
-            "Como funciona o JOIN no SQL?",
-        ]
-        
-        # Cria 3 perguntas diretamente no banco.
-        for t in titulos:
-            self.criar_pergunta_via_model(titulo=t)
-
-        # abre a página inicial
-        self.abrir_pagina("/forum/")
-
-        # verifica se os 3 títulos aparecem como links.
-        links = self.driver.find_elements(By.CSS_SELECTOR, "ul li a")
-        textos_encontrados = [l.text.strip() for l in links]
-
-        for titulo in titulos:
-            self.assertIn(titulo, textos_encontrados,
-                          f"Título '{titulo}' não encontrado na listagem.")
-
-        time.sleep(3)  # Apenas para visualizar o teste, pode ser removido
+    def teste4_solicitacaoServico_exige_login(self):  
+        self.abrir_pagina("/servicos/solicitar/")  
+        self.wait.until(EC.url_contains("/login/"))  
+        self.assertIn("/login/", self.driver.current_url)  
 
 
-class Teste_02_CriacaoPergunta(BaseTestCase):
+class teste5_cadastro(BaseTestCase):  #testes hist 5: cadastro e validaçao
 
-    """Testa a criação de perguntas no fórum."""
+    def teste5_cadastro_com_sucesso(self):  
+        username = "cadastro_hu05_valido"  
+        email = "cadastro.hu05.valido@example.com"  
+        self.preencher_cadastro(username, email)  
+        self.wait.until(EC.url_to_be(self.live_server_url + "/"))  
+        self.assertTrue(UsuarioPersonalizado.objects.filter(username=username, email=email).exists())  
+        body = self.driver.find_element(By.TAG_NAME, "body")  
+        self.assertIn("Soluções IoT recomendadas", body.text)  
 
-    def test_04_deve_criar_pergunta(self):
-        print("Teste 04: Criação de pergunta e visualização da mesma.")
-        
-        # abre a página de criação de pergunta
-        self.abrir_pagina("/forum/inserir/")
- 
-        # pega os campos do formulário de criação de pergunta
-        titulo = self.wait.until(
-            EC.presence_of_element_located((By.NAME, "titulo"))
-        )
-        detalhe = self.wait.until(
-            EC.presence_of_element_located((By.NAME, "detalhe"))
-        )
+    def teste5_cadastro_nome_exibicao_acima_de_16_caracteres(self):  
+        self.preencher_cadastro(  
+            "cadastro_hu05_nome_longo",  
+            "cadastro.hu05.nome.longo@example.com",  
+            nome_exibicao="NomeDeExibicaoMaiorQue16",  
+        )  
+        body = self.wait.until(EC.presence_of_element_located((By.TAG_NAME, "body")))  
+        self.assertIn("O nome de exibição não pode ter mais de 16 caracteres.", body.text)  
+        self.assertFalse(UsuarioPersonalizado.objects.filter(username="cadastro_hu05_nome_longo").exists())  
 
-        tentativa = self.wait.until(
-            EC.presence_of_element_located((By.NAME, "tentativa"))
-        )
+    def teste5_cadastro_cpf_cnpj_invalido(self):  
+        self.preencher_cadastro(  
+            "cadastro_hu05_documento_invalido",  
+            "cadastro.hu05.documento@example.com",  
+            cpf_cnpj="123",  
+        )  
+        body = self.wait.until(EC.presence_of_element_located((By.TAG_NAME, "body")))  
+        self.assertIn("Informe um CPF com 11 dígitos ou um CNPJ com 14 dígitos.", body.text)  
+        self.assertFalse(UsuarioPersonalizado.objects.filter(username="cadastro_hu05_documento_invalido").exists())  
 
-        # preenche os dados da pergunta.
-        titulo.send_keys("Teste 04: Como usar o Selenium com Django?")
+    def teste5_cadastro_email_ja_existente(self):  
+        self.criar_usuario("usuario_email_existente", "email.existente@example.com")  
+        self.preencher_cadastro(  
+            "cadastro_hu05_email_repetido",  
+            "email.existente@example.com",  
+        )  
+        body = self.wait.until(EC.presence_of_element_located((By.TAG_NAME, "body")))  
+        self.assertIn("Este e-mail já está cadastrado.", body.text)  
+        self.assertFalse(UsuarioPersonalizado.objects.filter(username="cadastro_hu05_email_repetido").exists())  
 
-        detalhe.send_keys("Podem me indicar tutoriais ou exemplos de uso do Selenium para testes em Django?")
 
-        tentativa.send_keys("Não tentei nada ainda.")
+class teste6_painelAdm(BaseTestCase):  #testes historia 6 -> painel adm de solicitações por porte
 
-        time.sleep(3)  # Apenas para visualizar o teste, pode ser removido
-        
-        # clica no botão de submit do formulário para gravar a pergunta
-        self.driver.find_element(By.TAG_NAME, "form").submit()
+    def criar_administrador(self): 
+        administrador = self.criar_usuario("admin_hu06", "admin.hu06@example.com") 
+        administrador.is_staff = True 
+        administrador.is_superuser = True 
+        administrador.save(update_fields=["is_staff", "is_superuser"]) 
+        return administrador 
 
-        # espera a página recarregar e exibir conteúdo
-        body = self.wait.until(
-            EC.presence_of_element_located((By.TAG_NAME, "body"))
-        )
+    def abrir_painel_solicitacoes(self, administrador): 
+        self.fazer_login_administrativo(administrador.username) 
+        self.abrir_pagina("/admin/app_operos/solicitacao/") 
+        self.wait.until(EC.presence_of_element_located((By.ID, "content"))) 
 
-        # verifica se o título da pergunta criada aparece na página
-        self.assertIn("Como usar o Selenium com Django?", body.text)
-        
-        time.sleep(10)  # Apenas para visualizar o teste, pode ser removido
+    def teste6_painelAdm_exibe_solicitacoes_agrupadas_por_porte(self): 
+        administrador = self.criar_administrador() 
+        for indice in range(2): 
+            Solicitacao.objects.create(usuario=administrador, porte_empresa="pequeno", servico=f"Serviço pequeno {indice}") 
+        Solicitacao.objects.create(usuario=administrador, porte_empresa="medio", servico="Serviço médio") 
+        Solicitacao.objects.create(usuario=administrador, porte_empresa="grande", servico="Serviço grande") 
+        self.abrir_painel_solicitacoes(administrador) 
+        pequeno = self.driver.find_element(By.XPATH, "//h3[normalize-space()='Pequeno porte']/following-sibling::h1[1]").text 
+        medio = self.driver.find_element(By.XPATH, "//h3[normalize-space()='Médio porte']/following-sibling::h1[1]").text 
+        grande = self.driver.find_element(By.XPATH, "//h3[normalize-space()='Grande porte']/following-sibling::h1[1]").text 
+        self.assertEqual(pequeno, "2") 
+        self.assertEqual(medio, "1") 
+        self.assertEqual(grande, "1") 
 
-    def test_05_deve_criar_pergunta_e_acessar_pergunta_criada_pela_pagina_principal_e_exibir_detalhes_pergunta(self):
-        print("Teste 05: Criação de pergunta, acesso pela página principal e visualização dos seus detalhes.")
-        
-        # acessa página de criação de pergunta
-        self.abrir_pagina("/forum/inserir/")
-
-        titulo = self.wait.until(
-            EC.presence_of_element_located((By.NAME, "titulo"))
-        )
-        detalhe = self.wait.until(
-            EC.presence_of_element_located((By.NAME, "detalhe"))
-        )
-
-        tentativa = self.wait.until(
-            EC.presence_of_element_located((By.NAME, "tentativa"))
-        )
-
-        # preenche campos.
-        titulo.send_keys("Teste 05: Como criar jogos no Unity?")
-
-        detalhe.send_keys("Podem me ajudar por favor?")
-
-        tentativa.send_keys("Ainda não tentei nada, quero muito começar a programar jogos.")
-
-        time.sleep(2)  # Apenas para visualizar o teste, pode ser removido
-
-        # grava a pergunta
-        self.driver.find_element(By.TAG_NAME, "form").submit()
-
-        # espera redirecionamento/listagem
-        self.wait.until(
-            EC.presence_of_element_located((By.TAG_NAME, "body"))
-        )
-
-        time.sleep(3)  # Apenas para visualizar o teste, pode ser removido
-
-        # vai para página inicial
-        self.abrir_pagina("/forum/")
-
-        # clica no link da pergunta criada para acessar detalhes
-        link = self.wait.until(
-            EC.element_to_be_clickable((By.LINK_TEXT, "Teste 05: Como criar jogos no Unity?"))
-        )
-
-        time.sleep(4)  # Apenas para visualizar o teste, pode ser removido
-
-        link.click()
-
-        body = self.wait.until(
-            EC.presence_of_element_located((By.TAG_NAME, "body"))
-        )
-
-        time.sleep(10)  # Apenas para visualizar o teste, pode ser removido
-
-        self.assertIn("Podem me ajudar por favor?", body.text)
+    def teste6_painelAdm_informa_quando_nao_existirem_solicitacoes(self): 
+        administrador = self.criar_administrador() 
+        self.abrir_painel_solicitacoes(administrador) 
+        body = self.driver.find_element(By.TAG_NAME, "body") 
+        self.assertIn("Não existem pedidos de serviços registrados.", body.text) 
