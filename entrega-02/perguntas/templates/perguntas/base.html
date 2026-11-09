@@ -1,43 +1,104 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
-    <title>Operos</title>
-    <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
-</head>
-<body>
-    <header class="header-principal">
-        <img src="{% static 'imagens_gerais/logo_operos.png' %}" alt="Operos" height="100">
-        <nav>
-            <a href="{% url 'perguntas:index' %}">Home</a> |
-            <a href="{% url 'app_operos:index' %}">Soluções IoT</a> |
-            <a href="{% url 'perguntas:quem_somos' %}">Quem Somos</a> |
-            <a href="{% url 'perguntas:inserir_pergunta' %}" class="btn-fale-conosco">Fale Conosco |</a>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-            {% if user.is_authenticated %}
-                <!-- mostra icon padrão e o primeiro nome do nome de exibição -->
-                <div class="usuario-logado-info" style="display: inline-flex; align-items: center; gap: 8px; margin-left: 15px;">
-                    <span class="avatar-default" style="width: 32px; height: 32px; background-color: #ccc; border-radius: 50%; display: inline-block;"></span>
-                    <span class="saudacao-usuario">
-                        Olá, {{ user.nome_exibicao|default:user.username|slugify|title|cut:"-"|truncatewords:1 }}!
-                    </span>
-                    <form action="{% url 'perguntas:logout' %}" method="post" style="display: inline; margin: 0;">
-                        {% csrf_token %}
-                        <button type="submit" class="btn-logout" style="background: none; border: none; cursor: pointer; color: inherit;">| Sair</button>
-                    </form>
-                </div>
-            {% else %}
-                <!-- botao p criar conta ou logar para vistitantes -->
-                <a href="{% url 'perguntas:cadastro' %}" class="btn-criar-conta" style="margin-left: 10px;">Criar conta |</a>
-                <a href="{% url 'perguntas:login' %}" class="btn-login" style="margin-left: 10px;">Entrar</a>
-            {% endif %}
-        </nav>
+    <meta name="theme-color" content="#015B80">
+
+    <title>{% block title %}Operos | IoT{% endblock %}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/estilo.css' %}?v=2">
+
+</head>
+
+<body class="{% block body_class %}site-page{% endblock %}">
+
+    <header class="site-header">
+
+        <div class="header-inner">
+
+            <a class="brand" href="{% url 'perguntas:index' %}">
+                <img src="{% static 'imagens_gerais/logo_operos_branco.png' %}" alt="Operos">
+            </a>
+
+            <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" data-menu-toggle>
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="main-nav" data-menu>
+
+                <a href="{% url 'perguntas:index' %}#conhecendo-iot">
+                    Conhecendo IoT
+                </a>
+
+                <a href="{% url 'perguntas:index' %}#segmentos">
+                    Segmentos
+                </a>
+
+                <a href="{% url 'perguntas:index' %}#inovacoes">
+                    Inovações
+                </a>
+
+                <a href="{% url 'perguntas:index' %}#sobre-nos">
+                    Sobre nós
+                </a>
+
+                {% if user.is_authenticated %}
+
+                    <div class="nav-user">
+
+                        <span class="nav-user-name">
+                            Olá, {{ user.nome_exibicao|default:user.username }}
+                        </span>
+
+                        <form action="{% url 'perguntas:logout' %}" method="post">
+
+                            {% csrf_token %}
+
+                            <button class="nav-login" type="submit">
+                                Sair
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                {% else %}
+
+                    <a class="nav-login" href="{% url 'perguntas:login' %}">
+                        Login
+                    </a>
+
+                    <a class="nav-signup" href="{% url 'perguntas:cadastro' %}">
+                        Cadastre-se
+                    </a>
+
+                {% endif %}
+
+            </nav>
+
+        </div>
+
     </header>
 
-    <main class="container">
+    <main class="site-main {% block main_class %}{% endblock %}">
+
         {% block content %}
         {% endblock %}
+
     </main>
+
+    <script src="{% static 'js/operos.js' %}?v=2" defer></script>
+
 </body>
 </html>
