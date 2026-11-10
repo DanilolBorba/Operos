@@ -1,399 +1,783 @@
 
 {% extends "perguntas/base.html" %}
 {% load static %}
+
+{% block title %}Operos | Internet das Coisas{% endblock %}
+
+{% block body_class %}site-page home-page{% endblock %}
+
+{% block main_class %}home-main{% endblock %}
+
 {% block content %}
 
-<h1 class="line typing-animation">Conheça a Revolução.</h1>
+<!-- HERO -->
+ 
+<section class="hero-section hero-showcase" id="inicio">
 
-<br>
-
-<p>
-    Olá, somos a Operos, implementamos soluções para aprimorar os conhecimentos dos usuários em IoT.
-    Nosso objetivo é expandir o interesse do IoT para empresas, de forma dinâmica e com fácil leitura e
-    compreensão do que se trata a proposta enviada, buscando minimizar falhas e erros nas produções
-    com os dispositivos apresentados.
-</p>
-<section class="introducao-iot">
-
-    <h2>O que é Internet das Coisas (IoT)?</h2>
-
-    <p>
-        A Internet das Coisas, conhecida como IoT, é uma
-        tecnologia que permite conectar objetos físicos
-        à internet para coletar, transmitir e compartilhar
-        informações.
-    </p>
-
-    <p>
-        Esses objetos podem utilizar sensores para monitorar
-        condições como temperatura, umidade, consumo de
-        energia e funcionamento de equipamentos.
-    </p>
-
-    <h2>Como funciona a IoT?</h2>
-
-    <p>
-        Os sensores coletam informações do ambiente ou
-        equipamento monitorado. Esses dados são enviados
-        por uma rede para sistemas que podem armazená-los,
-        analisá-los e apresentá-los ao usuário.
-    </p>
-
-    <p>
-        Dessa forma, empresas conseguem acompanhar suas
-        operações, identificar possíveis problemas e tomar
-        decisões com base nas informações coletadas.
-    </p>
-    <h2>Quais são os benefícios da IoT?</h2>
-
-    <p>
-        A utilização da Internet das Coisas permite que
-        empresas acompanhem suas operações de maneira
-        mais eficiente, utilizando dados coletados
-        continuamente por sensores conectados.
-    </p>
-
-    <div class="container-secund">
-        
-        <!-- reducao custos -->
-        <div class="container-terciario">
-            <img src="{% static 'imagens_gerais/economizar-cofrinho.png' %}" class="container-placeholder-img">
-            <div class="container-terciario-texto">
-                <p><b>Redução de custos:</b> Otimização de processos e uso eficiente de recursos energéticos e operacionais.</p>
-            </div>
-        </div>
-
-        <!-- prevencao de falhas -->
-        <div class="container-terciario">
-            <img src="{% static 'imagens_gerais/prevencao-falhas.png' %}" class="container-placeholder-img">
-            <div class="container-terciario-texto">
-                <p><b>Prevenção de falhas:</b> Permite identificar comportamentos incomuns em máquinas e equipamentos.</p>
-            </div>
-        </div>
-
-        <!-- produtividade -->
-        <div class="container-terciario">
-            <img src="{% static 'imagens_gerais/produtividade.png' %}" class="container-placeholder-img">
-            <div class="container-terciario-texto">
-                <p><b>Maior produtividade:</b> Facilita o acompanhamento de processos e a identificação de problemas operacionais.</p>
-            </div>
-        </div>
-
-        <!-- decisao -->
-        <div class="container-terciario">
-            <img src="{% static 'imagens_gerais/decision-making.png' %}" class="container-placeholder-img">
-            <div class="container-terciario-texto">
-                <p><b>Tomada de decisões:</b> Fornece informações que ajudam gestores a planejar melhorias em suas empresas.</p>
-            </div>
-        </div>
+    <div class="hero-watermark" aria-hidden="true">
+        OPEROS
     </div>
 
-    <h2>Quais dados podem ser coletados?</h2>
+    <div class="hero-image-wrap">
 
-    <p>
-        Dispositivos IoT podem monitorar diferentes
-        métricas, dependendo da necessidade
-        de cada empresa. Os dados mais comuns a serem captados são:
-    </p>
-
-    <div class="container-secund">
-        <div class="container-terciario">
-            <img src="{% static 'imagens_gerais/temp-umidade.png' %}" class="container-placeholder-img">
-            <div class="container-terciario-texto">
-                <p><b>Temperatura e umidade: </b> importantes para armazenamento de produtose controle de ambientes.</p>
-            </div>
-        </div>
-
-        <div class="container-terciario">
-            <img src="{% static 'imagens_gerais/electrical.png' %}" class="container-placeholder-img">
-            <div class="container-terciario-texto">
-                <p><b>Consumo de energia: </b>permite acompanhar o uso de eletricidadee identificar possíveis desperdícios. </p>
-            </div>
-        </div>
-
-        <div class="container-terciario">
-            <img src="{% static 'imagens_gerais/maquinario.png' %}" class="container-placeholder-img">
-            <div class="container-terciario-texto">
-                <p><b>Funcionamento de máquinas: </b>ajuda a monitorar condições operacionais e identificar anomalias.  </p>
-            </div>
-        </div>
-
-        <div class="container-terciario">
-            <img src="{% static 'imagens_gerais/consumo-agua.png' %}" class="container-placeholder-img">
-            <div class="container-terciario-texto">
-                <p><b>Consumo de água: </b>auxilia no acompanhamento de recursos e na identificação de possíveis vazamentos.</p>
-            </div>
-        </div>
-    </div>
-    
-    <h2>Conheça a IoT na prática</h2>
-
-    <p>
-        Confira exemplos de como dispositivos conectados
-        podem coletar informações e ajudar em diferentes
-        atividades do cotidiano e das empresas.
-    </p>
-
-    <div class="videos-iot">
-
-        <div class="video-iot">
-            <h3>O que é IoT?</h3>
-
-            <iframe
-                width="560"
-                height="315"
-                src="https://www.youtube.com/embed/EDYsSpdq_tY"
-                title="Minutos de IoT - O que é IoT?"
-                loading="lazy"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen>
-                Vídeo placeholder
-            </iframe>
-
-            <p>
-                <a href="https://www.youtube.com/watch?v=EDYsSpdq_tY"
-                   target="_blank"
-                   rel="noopener noreferrer">
-                    Assistir no YouTube
-                </a>
-            </p>
-        </div>
-
-        <div class="video-iot">
-            <h3>IoT aplicada ao agronegócio</h3>
-
-            <iframe
-                width="560"
-                height="315"
-                src="https://www.youtube.com/embed/7enQYZgUy5E"
-                title="IoT na agricultura - Smart Farming"
-                loading="lazy"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen>
-                Vídeo placeholder
-            </iframe>
-
-            <p>
-                <a href="https://www.youtube.com/watch?v=7enQYZgUy5E"
-                   target="_blank"
-                   rel="noopener noreferrer">
-                    Assistir no YouTube
-                </a>
-            </p>
-        </div>
+        <img
+            src="{% static 'imagens_gerais/operos-iot-hero.png' %}"
+            alt="Sensor inteligente IoT da Operos"
+            class="hero-main-image"
+        >
 
     </div>
+
+    <div class="hero-footnote">
+
+        <span>Integração com wi-fi</span>
+
+        <span>Controle e monitoramento remoto</span>
+
+        <span>Automação de tarefas</span>
+
+    </div>
+
 </section>
 
-{% if user.is_authenticated %}
 
-    {% if messages %}
-        {% for message in messages %}
-            <p>{{ message }}</p>
-        {% endfor %}
-    {% endif %}
 
-    <h2>Soluções IoT recomendadas</h2>
+<!-- CONHECENDO IOT -->
+<section class="page-section intro-section" id="conhecendo-iot">
 
-    {% for solucao in solucoes %}
-        <div class="homebox solucao-card">
+    <div class="section-heading">
 
-            <h3>{{ solucao.nome }}</h3>
+        <h2>Conhecendo IoT</h2>
 
-            <p>{{ solucao.descricao }}</p>
+        <p>
+            Como a Internet das Coisas conecta dispositivos
+            e transforma informações em possibilidades.
+        </p>
 
-            <form
-                method="post"
-                action="{% url 'app_operos:solicitar_servico' %}"
+    </div>
+
+    <div class="intro-grid">
+
+        <div class="intro-visual glass-light-card">
+
+        <div class="farm-illustration">
+
+            <img
+                src="{% static 'imagens_gerais/monitoramento-campo.png' %}"
+                alt="Monitoramento inteligente no campo"
             >
-                {% csrf_token %}
 
-                <input
-                    type="hidden"
-                    name="servico"
-                    value="{{ solucao.nome }}"
-                >
-
-                <label for="porte-{{ forloop.counter }}">
-                    Porte da empresa:
-                </label>
-
-                <select
-                    id="porte-{{ forloop.counter }}"
-                    name="porte_empresa"
-                    required
-                >
-                    <option value="">Selecione</option>
-                    <option value="pequeno">Pequeno</option>
-                    <option value="medio">Médio</option>
-                    <option value="grande">Grande</option>
-                </select>
-
-
-                <label for="descricao-{{ forloop.counter }}">
-                    Descreva sua necessidade:
-                </label>
-
-                <textarea
-                    id="descricao-{{ forloop.counter }}"
-                    name="descricao"
-                    rows="3"
-                    placeholder="Conte um pouco sobre sua necessidade"
-                ></textarea>
-
-
-                <button type="submit">
-                    Solicitar serviço
-                </button>
-
-            </form>
+            <div class="visual-caption">
+                Monitoramento inteligente no campo
+            </div>
 
         </div>
 
-    {% empty %}
+        </div>
+
+        <div class="intro-text">
+
+            <h3>O que é Internet das Coisas?</h3>
+
+            <p>
+                A Internet das Coisas, também conhecida como IoT,
+                é uma tecnologia que permite conectar objetos
+                físicos à internet para coletar, transmitir e
+                compartilhar informações.
+            </p>
+
+            <p>
+                Sensores coletam dados, a conectividade permite
+                sua transmissão e sistemas inteligentes ajudam
+                a organizar, analisar e transformar essas
+                informações em valor para o negócio.
+            </p>
+
+            <div class="data-types">
+
+                <div>
+
+                    <span class="data-type-icon">
+                        <i data-lucide="radar"></i>
+                    </span>
+
+                    <strong>Sensores</strong>
+
+                </div>
+
+                <div>
+
+                    <span class="data-type-icon">
+                        <i data-lucide="wifi"></i>
+                    </span>
+
+                    <strong>Conectividade</strong>
+
+                </div>
+
+                <div>
+
+                    <span class="data-type-icon">
+                        <i data-lucide="cloud"></i>
+                    </span>
+
+                    <strong>Nuvem</strong>
+
+                </div>
+
+                <div>
+
+                    <span class="data-type-icon">
+                        <i data-lucide="bar-chart-2"></i>
+                    </span>
+
+                    <strong>Dados</strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SEGMENTOS -->
+<section class="page-section segments-section" id="segmentos">
+
+    <div class="section-heading section-heading-light">
+
+        <h2>Segmentos</h2>
+
         <p>
-            Não encontramos soluções para a área de atuação
-            cadastrada em sua conta.
+            A tecnologia pode transformar diferentes setores,
+            melhorando processos e acompanhando operações.
         </p>
-    {% endfor %}
+
+    </div>
+
+    <div class="segment-grid">
+
+        <div class="segment-card">
+
+            <span class="segment-symbol">
+                <i data-lucide="factory"></i>
+            </span>
+
+            <h3>Indústria</h3>
+
+            <p>
+                Monitoramento de máquinas, equipamentos
+                e processos industriais.
+            </p>
+
+        </div>
+
+        <div class="segment-card">
+
+            <span class="segment-symbol">
+                <i data-lucide="truck"></i>
+            </span>
+
+            <h3>Logística</h3>
+
+            <p>
+                Acompanhamento de cargas, transportes
+                e armazenamento.
+            </p>
+
+        </div>
+
+        <div class="segment-card">
+
+            <span class="segment-symbol">
+                <i data-lucide="sprout"></i>
+            </span>
+
+            <h3>Agronegócio</h3>
+
+            <p>
+                Monitoramento de plantações, solo,
+                clima e irrigação.
+            </p>
+
+        </div>
+
+        <div class="segment-card">
+
+            <span class="segment-symbol">
+                <i data-lucide="heart"></i>
+            </span>
+
+            <h3>Saúde</h3>
+
+            <p>
+                Acompanhamento de ambientes,
+                equipamentos e pacientes.
+            </p>
+
+        </div>
+
+        <div class="segment-card">
+
+            <span class="segment-symbol">
+                <i data-lucide="zap"></i>
+            </span>
+
+            <h3>Energia</h3>
+
+            <p>
+                Controle de consumo e identificação
+                de desperdícios.
+            </p>
+
+        </div>
+
+        <div class="segment-card">
+
+            <span class="segment-symbol">
+                <i data-lucide="shopping-bag"></i>
+            </span>
+
+            <h3>Comércio</h3>
+
+            <p>
+                Monitoramento de estoques,
+                ambientes e operações.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- INOVAÇÕES -->
+<section class="page-section innovation-section" id="inovacoes">
+
+    <div class="innovation-backdrop"></div>
+
+    <div class="innovation-content">
+
+        <div class="section-heading innovation-heading">
+
+            <h2>Inovações</h2>
+
+            <p>
+                Tecnologia para melhorar o dia a dia
+                das operações e facilitar decisões.
+            </p>
+
+        </div>
+
+        <div class="innovation-grid">
+
+            <div class="innovation-card">
+
+                <div class="innovation-icon">
+                    <i data-lucide="activity"></i>
+                </div>
+
+                <div>
+                    <h3>Monitoramento inteligente</h3>
+                    <p>
+                        Acompanhe equipamentos e processos
+                        com informações coletadas continuamente.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="innovation-card">
+
+                <div class="innovation-icon">
+                    <i data-lucide="chart-line"></i>
+                </div>
+
+                <div>
+                    <h3>Análise de dados</h3>
+                    <p>
+                        Utilize informações para identificar
+                        oportunidades e melhorar resultados.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="innovation-card">
+
+                <div class="innovation-icon">
+                    <i data-lucide="bell"></i>
+                </div>
+
+                <div>
+                    <h3>Alertas em tempo real</h3>
+                    <p>
+                        Identifique comportamentos incomuns
+                        e acompanhe possíveis problemas.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- COMO FUNCIONA -->
+<section class="page-section how-section">
+
+    <div class="section-heading">
+
+        <h2>Como funciona?</h2>
+
+        <p>
+            Da coleta de dados à tomada de decisão.
+        </p>
+
+    </div>
+
+    <div class="steps-grid">
+
+        <div class="step-card">
+
+            <span class="step-number">01</span>
+
+            <div class="step-icon">
+                <i data-lucide="gauge"></i>
+            </div>
+
+            <h3>1. Sensores</h3>
+
+            <p>
+                Dispositivos inteligentes e transdutores
+                capturam dados ambientais e operacionais
+                de máquinas e equipamentos.
+            </p>
+
+        </div>
+
+        <div class="step-card">
+
+            <span class="step-number">02</span>
+
+            <div class="step-icon">
+                <i data-lucide="router"></i>
+            </div>
+
+            <h3>2. Gateway</h3>
+
+            <p>
+            Concentra, filtra e pré-processa os sinais localmente com tecnologia de borda (Edge Computing) e transmissão segura.
+            </p>
+
+        </div>
+
+        <div class="step-card">
+
+            <span class="step-number">03</span>
+
+            <div class="step-icon">
+                <i data-lucide="cloud-cog"></i>
+            </div>
+
+            <h3>3. Nuvem</h3>
+
+            <p>
+            Armazenamento em infraestrutura de alta escala, tratamento com modelos estatísticos e integração a múltiplos sistemas via API.
+            </p>
+
+        </div>
+
+        <div class="step-card">
+
+            <span class="step-number">04</span>
+
+            <div class="step-icon">
+                <i data-lucide="brain-circuit"></i>
+            </div>
+
+            <h3>4. Decisões inteligentes</h3>
+
+            <p>
+            Painéis dinâmicos, alertas automáticos e relatórios preditivos para guiar gestores com dados acionáveis e reduzir custos.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SOLUÇÕES RECOMENDADAS -->
+{% if user.is_authenticated %}
+
+<section class="page-section recommendations-section" id="solucoes">
+
+    <div class="section-heading section-heading-light">
+
+        <span class="eyebrow">SOLUÇÕES PARA SUA EMPRESA</span>
+
+        <h2>Soluções IoT recomendadas</h2>
+
+        <p>
+            Confira as soluções disponíveis para sua área
+            de atuação e solicite um serviço.
+        </p>
+
+    </div>
+
+    {% if messages %}
+
+        <div class="message-list">
+
+            {% for message in messages %}
+
+                <div class="message-item">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% endif %}
+
+    <div class="recommendation-grid">
+
+        {% for solucao in solucoes %}
+
+            <div class="recommendation-card">
+
+                <span class="card-kicker">
+                    SOLUÇÃO OPEROS
+                </span>
+
+                <h3>{{ solucao.nome }}</h3>
+
+                <p>{{ solucao.descricao }}</p>
+
+                <form
+                    class="request-form"
+                    method="post"
+                    action="{% url 'app_operos:solicitar_servico' %}"
+                >
+
+                    {% csrf_token %}
+
+                    <input
+                        type="hidden"
+                        name="servico"
+                        value="{{ solucao.nome }}"
+                    >
+
+                    <div class="form-group">
+
+                        <label for="porte-{{ forloop.counter }}">
+                            Porte da empresa
+                        </label>
+
+                        <select
+                            id="porte-{{ forloop.counter }}"
+                            name="porte_empresa"
+                            required
+                        >
+
+                            <option value="">Selecione</option>
+
+                            <option value="pequeno">Pequeno</option>
+
+                            <option value="medio">Médio</option>
+
+                            <option value="grande">Grande</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="descricao-{{ forloop.counter }}">
+                            Descreva sua necessidade
+                        </label>
+
+                        <textarea
+                            id="descricao-{{ forloop.counter }}"
+                            name="descricao"
+                            rows="3"
+                            placeholder="Conte um pouco sobre sua necessidade"
+                        ></textarea>
+
+                    </div>
+
+                    <button type="submit" class="button-primary">
+                        Solicitar serviço
+                    </button>
+
+                </form>
+
+            </div>
+
+        {% empty %}
+
+            <p class="empty-state">
+                Não encontramos soluções para a área de atuação
+                cadastrada em sua conta.
+            </p>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% else %}
+
+<section class="page-section account-cta">
+
+    <div class="account-cta-card">
+
+        <div>
+
+            <span class="eyebrow">FAÇA PARTE DA OPEROS</span>
+
+            <h2>Descubra novas possibilidades para a sua empresa com IoT.</h2>
+
+            <p>
+                Crie sua conta para conhecer soluções
+                relacionadas à sua área de atuação
+                e solicitar serviços.
+            </p>
+
+        </div>
+
+        <a
+            href="{% url 'perguntas:cadastro' %}"
+            class="button-primary"
+        >
+            Criar minha conta
+        </a>
+
+    </div>
+
+</section>
 
 {% endif %}
 
-<h2>Problema a ser resolvido</h2>
 
-<div class="homebox">
+<!-- SOBRE NÓS -->
+<section class="page-section about-section" id="sobre-nos">
 
-    <img
-        src="https://static.wixstatic.com/media/db1550_ed1c30f522fd44c58a52ef417b4c0b76~mv2.png/v1/fill/w_176,h_106,al_c,lg_1,q_85,enc_avif,quality_auto/logo-bzu-tech.png"
-        alt="Logo da BZU Tech"
-    >
+    <div class="about-glass-panel">
 
-    <p>
-        A pedido da empresa BZU Tech, uma das maiores do estado de Pernambuco no quesito de IoT,
-        embarcamos numa missão de expandir o mercado das IoT's para pessoas e empresas por meio de
-        métodos de fácil assimilação aos benefícios de sua aplicação.
-    </p>
+        <div class="about-copy">
 
-</div>
+            <h2>Sobre nós</h2>
 
-<style>
-    .solucao-card {
-        box-sizing: border-box;
-        margin: 22px 0;
-        padding: 24px;
-        background: #ffffff;
-        border: 1px solid #e5e7eb;
-        border-top: 3px solid #304bff;
-        border-radius: 10px;
-        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
-    }
+            <p>
+                A Operus (Opitsol) trabalha com soluções de IoT (Internet das Coisas) para ajudar empresas a acompanhar suas operações, otimizar processos e transformar dados em decisões mais inteligentes. Por meio da integração de sensores, dispositivos e sistemas conectados, oferecemos mais controle, eficiência e praticidade no gerenciamento de diferentes atividades. Nosso objetivo é aproximar a tecnologia do dia a dia das empresas, proporcionando informações em tempo real, automatizando tarefas e criando oportunidades para um futuro cada vez mais conectado, produtivo e inteligente.
+            </p>
 
-    .solucao-card h3 {
-        margin: 0 0 12px;
-        color: #303030;
-        font-family: inherit;
-        font-size: 1.2rem;
-    }
+            <a
+                href="{% url 'perguntas:quem_somos' %}"
+                class="button-glass"
+            >
+                Conheça a equipe
+            </a>
 
-    .solucao-card p {
-        margin: 0 0 22px;
-        color: #444444;
-        font-family: inherit;
-        line-height: 1.6;
-    }
+        </div>
 
-    .solucao-card form {
-        display: grid;
-        grid-template-columns: 190px minmax(0, 1fr);
-        align-items: start;
-        gap: 12px 18px;
-    }
+        <div class="about-visual">
 
-    .solucao-card label {
-        padding-top: 10px;
-        color: #303030;
-        font-family: inherit;
-        font-size: 0.95rem;
-        font-weight: 600;
-    }
+            <div class="about-video-frame">
 
-    .solucao-card select,
-    .solucao-card textarea {
-        box-sizing: border-box;
-        width: 100%;
-        min-width: 0;
-        margin: 0;
-        padding: 11px 12px;
-        border: 1px solid #d1d5db;
-        border-radius: 6px;
-        background: #ffffff;
-        color: #303030;
-        font-family: inherit;
-        font-size: 0.95rem;
-    }
+                <span>INSERIR VÍDEO AQUI!!</span>
 
-    .solucao-card select {
-        cursor: pointer;
-    }
+            </div>
 
-    .solucao-card textarea {
-        min-height: 95px;
-        resize: vertical;
-        line-height: 1.5;
-    }
+            <p>
+                Conectando conhecimento e tecnologia.
+            </p>
 
-    .solucao-card select:focus,
-    .solucao-card textarea:focus {
-        outline: none;
-        border-color: #304bff;
-        box-shadow: 0 0 0 3px rgba(48, 75, 255, 0.12);
-    }
+        </div>
 
-    .solucao-card button {
-        grid-column: 2;
-        justify-self: start;
-        padding: 11px 20px;
-        border: none;
-        border-radius: 6px;
-        background: #304bff;
-        color: #ffffff;
-        font-family: inherit;
-        font-size: 0.95rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background 0.2s ease;
-    }
 
-    .solucao-card button:hover {
-        background: #263ed9;
-    }
+        <!-- EQUIPE -->
+        <div class="team-preview">
 
-    @media (max-width: 600px) {
-        .solucao-card {
-            padding: 18px;
-        }
+            <div class="team-heading">
 
-        .solucao-card form {
-            grid-template-columns: minmax(0, 1fr);
-            gap: 8px;
-        }
+                <span class="eyebrow">INTEGRANTES DA OPEROS</span>
 
-        .solucao-card label {
-            padding-top: 4px;
-        }
+                <h2>Nosso time</h2>
 
-        .solucao-card select,
-        .solucao-card textarea,
-        .solucao-card button {
-            grid-column: 1;
-        }
+            </div>
 
-        .solucao-card button {
-            margin-top: 8px;
-        }
-    }
-</style>
+            <div class="team-grid">
+
+                <div class="team-member">
+
+                    <img
+                        src="{% static 'time/antoninovasconcelos.jpg' %}"
+                        alt="Antonino"
+                    >
+
+                    <span>Antonino Vasconcelos</span>
+
+                </div>
+
+                <div class="team-member">
+
+                    <img
+                        src="{% static 'time/arturmenezes.jpg' %}"
+                        alt="Artur"
+                    >
+
+                    <span>Artur Menezes</span>
+
+                </div>
+
+                <div class="team-member">
+
+                    <img
+                        src="{% static 'time/ceci.jpg' %}"
+                        alt="Carla Cecília"
+                    >
+
+                    <span>Carla Cecília</span>
+
+                </div>
+
+                <div class="team-member">
+
+                    <img
+                        src="{% static 'time/danilocesar.jpg' %}"
+                        alt="Danilo"
+                    >
+
+                    <span>Danilo César</span>
+
+                </div>
+
+                <div class="team-member">
+
+                    <img
+                        src="{% static 'time/davi.jpg' %}"
+                        alt="Davi"
+                    >
+
+                    <span>Davi</span>
+
+                </div>
+
+                <div class="team-member">
+
+                    <img
+                        src="{% static 'time/enzo.jpg' %}"
+                        alt="Enzo"
+                    >
+
+                    <span>Enzo Borges</span>
+
+                </div>
+
+                <div class="team-member">
+
+                    <img
+                        src="{% static 'time/fabiomarcelo.jpg' %}"
+                        alt="Fábio Marcelo"
+                    >
+
+                    <span>Fábio Marcelo</span>
+
+                </div>
+
+                <div class="team-member">
+
+                    <img
+                        src="{% static 'time/felipeassis.jpg' %}"
+                        alt="Felipe"
+                    >
+
+                    <span>Felipe Assis</span>
+
+                </div>
+
+                <div class="team-member">
+
+                    <img
+                        src="{% static 'time/guylherme.jpg' %}"
+                        alt="Guylherme"
+                    >
+
+                    <span>Guylherme Rafael</span>
+
+                </div>
+
+                <div class="team-member">
+
+                    <img
+                        src="{% static 'time/joseartur.jpg' %}"
+                        alt="José Artur"
+                    >
+
+                    <span>José Artur</span>
+
+                </div>
+
+                <div class="team-member">
+
+                    <img
+                        src="{% static 'time/otofrias.jpg' %}"
+                        alt="Oto"
+                    >
+
+                    <span>Oto Frias</span>
+
+                </div>
+
+                <div class="team-member">
+
+                    <img
+                        src="{% static 'time/rafasantuzzi.jpg' %}"
+                        alt="Rafael"
+                    >
+
+                    <span>Rafael Santuzzi</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- RODAPÉ -->
+<footer class="site-footer">
+
+    <div class="footer-brand">
+        OPEROS
+    </div>
+
+    <span>
+        Soluções tecnológicas para Internet das Coisas e inovação.
+    </span>
+
+    <a href="#inicio">
+        Voltar ao início
+    </a>
+
+</footer>
 
 {% endblock %}
