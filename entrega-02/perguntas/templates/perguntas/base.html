@@ -121,14 +121,15 @@
         {% endblock %}
 
     </main>
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-    <script src="{% static 'js/operos.js' %}?v=2" defer></script>
+    <script>
+        if (window.lucide) {
+            window.lucide.createIcons();
+        }
+    </script>
+
+    <script src="{% static 'js/operos.js' %}?v=6" defer></script>
 
 </body>
-
-<script src="https://unpkg.com/lucide@latest"></script>
-<script>
-    lucide.createIcons();
-</script>
-
 </html>
