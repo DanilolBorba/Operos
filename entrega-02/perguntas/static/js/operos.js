@@ -1,72 +1,109 @@
-
 document.addEventListener("DOMContentLoaded", function () {
 
     // Menu responsivo
-    const menuToggle = document.querySelector("[data-menu-toggle");
+    const menuToggle = document.querySelector("[data-menu-toggle]");
     const menu = document.querySelector("[data-menu]");
 
     if (menuToggle && menu) {
-
         menuToggle.addEventListener("click", function () {
-
             const aberto = menu.classList.toggle("is-open");
-
-            menuToggle.setAttribute("aria-expanded", aberto);
-
+            menuToggle.setAttribute("aria-expanded", String(aberto));
         });
 
-        const links = menu.querySelectorAll("a");
-
-        links.forEach(function (link) {
-
+        menu.querySelectorAll("a").forEach(function (link) {
             link.addEventListener("click", function () {
-
                 menu.classList.remove("is-open");
-
                 menuToggle.setAttribute("aria-expanded", "false");
-
             });
-
         });
-
     }
 
-
     // Mostrar e ocultar senha
-    const botoesSenha = document.querySelectorAll("[data-toggle-password]");
-
-    botoesSenha.forEach(function (botao) {
-
+    document.querySelectorAll("[data-toggle-password]").forEach(function (botao) {
         botao.addEventListener("click", function () {
-
             const id = botao.getAttribute("data-toggle-password");
-
             const campo = document.getElementById(id);
 
             if (!campo) {
                 return;
             }
 
-            if (campo.type === "password") {
-
-                campo.type = "text";
-
-                botao.textContent = "◎";
-
-                botao.setAttribute("aria-label", "Ocultar senha");
-
-            } else {
-
-                campo.type = "password";
-
-                botao.textContent = "◉";
-
-                botao.setAttribute("aria-label", "Mostrar senha");
-
-            }
-
+            const mostrar = campo.type === "password";
+            campo.type = mostrar ? "text" : "password";
+            botao.textContent = mostrar ? "◎" : "◉";
+            botao.setAttribute(
+                "aria-label",
+                mostrar ? "Ocultar senha" : "Mostrar senha"
+            );
         });
+    });
 
+    // Animações de entrada ao rolar a página
+    const prefereMovimentoReduzido = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (prefereMovimentoReduzido) {
+        return;
+    }
+
+    const seletores = [
+        ".page-section .section-heading",
+        ".intro-visual",
+        ".intro-text",
+        ".segment-card",
+        ".innovation-card",
+        ".step-card",
+        ".recommendation-card",
+        ".account-cta-card",
+        ".about-copy",
+        ".about-visual",
+        ".team-member",
+        ".team-card",
+        ".team-section-heading"
+    ];
+
+    const elementos = document.querySelectorAll(seletores.join(","));
+
+    if (!elementos.length) {
+        return;
+    }
+
+    if (!("IntersectionObserver" in window)) {
+        return;
+    }
+
+    elementos.forEach(function (elemento) {
+        const grupo = Array.from(elemento.parentElement.children).filter(
+            function (irmao) {
+                return irmao.matches(seletores.join(","));
+            }
+        );
+
+        const indice = Math.max(0, grupo.indexOf(elemento));
+        const atraso = Math.min(indice, 5) * 85;
+
+        elemento.style.setProperty("--reveal-delay", atraso + "ms");
+        elemento.classList.add("reveal-on-scroll");
+    });
+
+    const observador = new IntersectionObserver(
+        function (entradas, observer) {
+            entradas.forEach(function (entrada) {
+                if (entrada.isIntersecting) {
+                    entrada.target.classList.add("is-visible");
+                    observer.unobserve(entrada.target);
+                }
+            });
+        },
+        {
+            threshold: 0.12,
+            rootMargin: "0px 0px -40px 0px"
+        }
+    );
+
+    elementos.forEach(function (elemento) {
+        observador.observe(elemento);
     });
 
 });

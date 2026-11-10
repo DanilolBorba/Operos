@@ -13,9 +13,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="{% static 'css/estilo.css' %}?v=2">
+    <link rel="stylesheet" href="{% static 'css/estilo.css' %}?v=3">
 
 </head>
 
@@ -23,71 +23,95 @@
 
     <header class="site-header">
 
+        
         <div class="header-inner">
 
             <a class="brand" href="{% url 'perguntas:index' %}">
-                <img src="{% static 'imagens_gerais/logo_operos_branco.png' %}" alt="Operos">
+
+                <img
+                    src="{% static 'imagens_gerais/logo_operos_branco.png' %}"
+                    alt="Operos"
+                >
+
             </a>
 
-            <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" data-menu-toggle>
+
+            <button
+                class="menu-toggle"
+                type="button"
+                aria-label="Abrir menu"
+                aria-expanded="false"
+                data-menu-toggle
+            >
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
 
+
             <nav class="main-nav" data-menu>
 
-                <a href="{% url 'perguntas:index' %}#conhecendo-iot">
-                    Conhecendo IoT
-                </a>
+                <div class="nav-links">
 
-                <a href="{% url 'perguntas:index' %}#segmentos">
-                    Segmentos
-                </a>
-
-                <a href="{% url 'perguntas:index' %}#inovacoes">
-                    Inovações
-                </a>
-
-                <a href="{% url 'perguntas:index' %}#sobre-nos">
-                    Sobre nós
-                </a>
-
-                {% if user.is_authenticated %}
-
-                    <div class="nav-user">
-
-                        <span class="nav-user-name">
-                            Olá, {{ user.nome_exibicao|default:user.username }}
-                        </span>
-
-                        <form action="{% url 'perguntas:logout' %}" method="post">
-
-                            {% csrf_token %}
-
-                            <button class="nav-login" type="submit">
-                                Sair
-                            </button>
-
-                        </form>
-
-                    </div>
-
-                {% else %}
-
-                    <a class="nav-login" href="{% url 'perguntas:login' %}">
-                        Login
+                    <a href="{% url 'perguntas:index' %}#conhecendo-iot">
+                        Conhecendo IoT
                     </a>
 
-                    <a class="nav-signup" href="{% url 'perguntas:cadastro' %}">
-                        Cadastre-se
+                    <a href="{% url 'perguntas:index' %}#segmentos">
+                        Segmentos
                     </a>
 
-                {% endif %}
+                    <a href="{% url 'perguntas:index' %}#inovacoes">
+                        Inovações
+                    </a>
+
+                    <a href="{% url 'perguntas:index' %}#sobre-nos">
+                        Sobre nós
+                    </a>
+
+                </div>
+
+
+                <div class="nav-actions">
+
+                    {% if user.is_authenticated %}
+
+                        <div class="nav-user">
+
+                            <span class="nav-user-name">
+                                Olá, {{ user.nome_exibicao|default:user.username }}
+                            </span>
+
+                            <form action="{% url 'perguntas:logout' %}" method="post">
+
+                                {% csrf_token %}
+
+                                <button class="nav-login" type="submit">
+                                    Sair
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    {% else %}
+
+                        <a class="nav-login" href="{% url 'perguntas:login' %}" data-page-transition>
+                            Login
+                        </a>
+
+                        <a class="nav-signup" href="{% url 'perguntas:cadastro' %}" data-page-transition>
+                            Cadastre-se
+                        </a>
+
+                    {% endif %}
+
+                </div>
 
             </nav>
 
         </div>
+
 
     </header>
 
@@ -101,4 +125,10 @@
     <script src="{% static 'js/operos.js' %}?v=2" defer></script>
 
 </body>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+    lucide.createIcons();
+</script>
+
 </html>
