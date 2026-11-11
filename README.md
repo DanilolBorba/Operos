@@ -52,7 +52,7 @@ https://operos-a7kn.onrender.com
             - **E** deve apresentar funcionalidades e benefícios da adoção dela para o cliente
             - **E** precisa usar uma linguagem amiga ao público geral
 
-4. **HU03** - Como **usuário logado**, gostaria de informar os principais problemas e necessidades da minha empresa, para receber soluções de IoT adequadas.
+3. **HU03** - Como **usuário logado**, gostaria de informar os principais problemas e necessidades da minha empresa, para receber soluções de IoT adequadas.
     - **Descrição:** O sistema deve permitir que um cliente autenticado informe as características de sua empresa e suas principais necessidades operacionais, validando os dados fornecidos e registrando as informações necessárias para identificar soluções de IoT compatíveis com seu contexto empresarial. 
     - **Caso I:** O preenchimento e envio dos requisitos é feito pelo cliente com sucesso
         - **Dado que** m cliente está logado no sistema e informa suas necessidades a serem atendidas
@@ -64,7 +64,7 @@ https://operos-a7kn.onrender.com
         - **Então** o sistema deve impedir de que sua requisição seja enviada
             - **E** deve retornar um feedback visual de que o envio não pôde ser feito porque existe um ou mais campos vazios
 
-6. **HU04** - Como **usuário logado**, gostaria de solicitar um serviço de IoT, para iniciar o processo de contratação.
+4. **HU04** - Como **usuário logado**, gostaria de solicitar um serviço de IoT, para iniciar o processo de contratação.
     - **Descrição:** Permitir que o usuário solicite um serviço de IoT após ver as soluções recomendadas para iniciar o processo da contratação 
     - **Caso I:**  A solicitação do serviço para a empresa é feita com sucesso
         - **Dado que** o cliente está logado e visualiza detalhes de uma solução de IoT recomendada ou disponível
@@ -77,7 +77,7 @@ https://operos-a7kn.onrender.com
 
 
 
-7. **HU05** - Como **futuro cliente**, gostaria de realizar meu cadastro preenchendo todos os dados necessários para ter acesso aos recursos do site
+5. **HU05** - Como **futuro cliente**, gostaria de realizar meu cadastro preenchendo todos os dados necessários para ter acesso aos recursos do site
     - **Descrição:** sistema deve disponibilizar um formulário de cadastro estruturado que colete as informações essenciais do usuário, validando regras cruciais como o limite de caracteres para o nome de exibição e a verificação do formato do CPF ou CNPJ. Caso o preenchimento esteja correto, a conta deve ser criada e o usuário redirecionado; caso contrário, o sistema deve apontar os erros de validação correspondentes.
     - **Caso I:** cadastro feito com sucesso
         - **Dado que** cliente está na pagina de cadastro
@@ -101,7 +101,7 @@ https://operos-a7kn.onrender.com
             - **E** o sistema exibe uma mensagem de erro informando que o e-mail já está em uso.
 
 
-8. **HU06** - Como **admin**, gostaria de visualizar a quantidade de solicitações de serviços divididas pelo porte das empresas (pequeno, médio e grande), para identificar quais segmentos possuem maior demanda.
+6. **HU06** - Como **admin**, gostaria de visualizar a quantidade de solicitações de serviços divididas pelo porte das empresas (pequeno, médio e grande), para identificar quais segmentos possuem maior demanda.
     - **Descrição:** O sistema deve disponibilizar aos administradores um painel de monitoramento que apresente a quantidade de solicitações de serviços de IoT agrupadas pelo porte das empresas (pequeno, médio e grande), permitindo identificar a distribuição da demanda entre os segmentos empresariais e apoiando a tomada de decisões.
     - **Caso I:** Funcionário consegue ver as solicitações com sucesso
         - **Dado que** o funcionário está logado e tem permissão para acessar o painel administrativo
@@ -153,7 +153,7 @@ https://operos-a7kn.onrender.com
             - **E** o sistema exibe uma mensagem de erro informando que o e-mail já está em uso.
 
 - **HU06** - Como **admin**, gostaria de visualizar a quantidade de solicitações de serviços divididas pelo porte das empresas (pequeno, médio e grande), para identificar quais segmentos possuem maior demanda.
-      - **Descrição:** O sistema deve disponibilizar aos administradores um painel de monitoramento que apresente a quantidade de solicitações de serviços de IoT agrupadas pelo porte das empresas (pequeno, médio e grande), permitindo identificar a distribuição da demanda entre os segmentos empresariais e apoiando a tomada de decisões.
+    - **Descrição:** O sistema deve disponibilizar aos administradores um painel de monitoramento que apresente a quantidade de solicitações de serviços de IoT agrupadas pelo porte das empresas (pequeno, médio e grande), permitindo identificar a distribuição da demanda entre os segmentos empresariais e apoiando a tomada de decisões.
     - **Caso I:** Funcionário consegue ver as solicitações com sucesso
         - **Dado que** o funcionário está logado e tem permissão para acessar o painel administrativo
         - **Quando** for acessar a parte de solicitações recebidas e houver pelo menos uma existente
@@ -181,12 +181,40 @@ https://operos-a7kn.onrender.com
 
 ### Histórias escolhidas:
 
-(historias aqui)
+1. **HU01** - Como futuro cliente, gostaria de saber mais sobre IoT, para compreender como essa tecnologia funciona, benefícios e suas aplicações.
+    - **Descrição:**  O site deve apresentar uma interface organizada, intuitiva e visualmente clara. As informações, textos e elementos gráficos devem ser dispostos de maneira que facilite a compreensão do conteúdo pelo usuário. 
+    - **Caso I:** futuro cliente consegue visualizar o conceito de IoT e seus impactos
+        - **Dado que** o futuro cliente acessou o site
+        - **Quando** ele entrar na página home e for lendo ela
+        - **Então** o site deve mostrar de maneira clara sobre o conceito de IoT
+            - **E** deve destacar os benefícios e importância de seu uso em diversas métricas, especialmente para a parte de coleta de dados
+
+2. **HU02** - Como futuro cliente, gostaria de visualizar as soluções de IoT disponíveis, para conhecer suas funcionalidades e benefícios.
+    - **Descrição:** sistema deve apresentar as soluções de IoT disponíveis, descrevendo suas funcionalidades, aplicações e benefícios de maneira organizada e compreensível, permitindo que futuros clientes identifiquem quais alternativas podem atender às necessidades de suas empresas.
+    - **Caso I:** soluções são apresentadas com sucesso
+        - **Dado que** um futurro cliente acessa o site
+        - **Quando** ele chega na parte de soluções existentes
+        - **Então** o site deve mostrar as soluções disponíveis
+            - **E** cada solução deve mostrar sua descrição de sua finalidade
+            - **E** deve apresentar funcionalidades e benefícios da adoção dela para o cliente
+            - **E** precisa usar uma linguagem amiga ao público geral
+
+3. **HU03** - Como **usuário logado**, gostaria de informar os principais problemas e necessidades da minha empresa, para receber soluções de IoT adequadas.
+    - **Descrição:** O sistema deve permitir que um cliente autenticado informe as características de sua empresa e suas principais necessidades operacionais, validando os dados fornecidos e registrando as informações necessárias para identificar soluções de IoT compatíveis com seu contexto empresarial. 
+    - **Caso I:** O preenchimento e envio dos requisitos é feito pelo cliente com sucesso
+        - **Dado que** m cliente está logado no sistema e informa suas necessidades a serem atendidas
+        - **Quando** informar os dados necessários, como setor de atuação da empresa, porte e problemas a serem resolvidos, e envia todas suas respostas preenchidas corretamente
+        - **Então** o sistema deve avaliar os dados informados e retornar a solução mais adequada ao cliente
+    - **Caso II:** o preenchimento dos requisitos do cliente está incompleto
+        - **Dado que** um cliente está logado no sistema e acessa a parte de informar suas necessidades a serem atendidas
+        - **Quando** tenta enviar o formulário sem preencher um ou mais campos
+        - **Então** o sistema deve impedir de que sua requisição seja enviada
+            - **E** deve retornar um feedback visual de que o envio não pôde ser feito porque existe um ou mais campos vazios
 
 ---
 ### [placeholder quadro da sprint]
 ---
-### [placeholder screencast]
+### [placeholder screencast(s)]
 
 ---
 ---
