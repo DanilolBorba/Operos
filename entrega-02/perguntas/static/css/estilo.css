@@ -295,20 +295,40 @@ body.request-success-page { min-height: 100vh; background: radial-gradient(ellip
 .request-success-button span { font-size: 19px; }
 
 /* REVELAÇÃO AO ROLAR A PÁGINA */
-.reveal-on-scroll { opacity: 0; transform: translateY(24px); transition: opacity .65s ease var(--reveal-delay, 0ms), transform .65s cubic-bezier(.16, 1, .3, 1) var(--reveal-delay, 0ms), translate .16s ease 0ms; }
-.reveal-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
-/* O hover usa translate separado do transform usado na revelação. */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(30px) scale(.97);
+    filter: blur(3px);
+    transition:
+        opacity .8s cubic-bezier(.22, 1, .36, 1) var(--reveal-delay, 0ms),
+        transform .8s cubic-bezier(.22, 1, .36, 1) var(--reveal-delay, 0ms),
+        filter .8s ease var(--reveal-delay, 0ms),
+        translate .18s ease,
+        border-color .18s ease;
+}
+
+.reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+}
+
+/* HOVER DOS CARDS */
 @media (hover: hover) and (pointer: fine) {
-    .segment-card,
-    .innovation-card,
-    .step-card,
-    .recommendation-card,
-    .team-member { transition: translate .16s ease, border-color .16s ease; }
-    .segment-card:hover { translate: 0 -6px; }
+    .segment-card:hover {
+        translate: 0 -6px;
+        border-color: rgba(255, 255, 255, .9);
+    }
+
     .innovation-card:hover,
-    .recommendation-card:hover { translate: 0 -5px; }
+    .recommendation-card:hover {
+        translate: 0 -5px;
+    }
+
     .step-card:hover,
-    .team-member:hover { translate: 0 -4px; }
+    .team-member:hover {
+        translate: 0 -4px;
+    }
 }
 
 /* ANIMAÇÕES DE ENTRADA */
@@ -471,9 +491,6 @@ body.about-page .site-header { position: absolute; inset: 0 0 auto; z-index: 20;
 .about-team-section-dark .team-card > a:hover { color: #fff; }
 .about-team-section-dark .team-photo { border-color: rgba(255, 255, 255, .5); box-shadow: 0 8px 20px rgba(0, 20, 32, .25); }
 .about-team-section-dark .team-note { color: #fff; background: rgba(255, 255, 255, .15); }
-.about-footer { min-height: 88px; padding: 22px max(5%, calc((100% - 1280px) / 2)); display: flex; align-items: center; justify-content: space-between; gap: 18px; color: rgba(255, 255, 255, .72); background: #002F43; font-size: 11px; }
-.about-footer a { color: #fff; text-decoration: none; }
-.about-footer a:first-child { font-size: 18px; font-weight: 800; letter-spacing: .1em; }
 
 /* ENTRADA DOS INTEGRANTES E ANIMAÇÃO INDIVIDUAL DAS FOTOS */
 .team-card.reveal-on-scroll.is-visible .team-photo,
@@ -502,7 +519,6 @@ body.about-page .site-header { position: absolute; inset: 0 0 auto; z-index: 20;
     .team-photo { width: 88px; height: 88px; flex-basis: 88px; margin-bottom: 13px; }
     .team-card h3 { font-size: 11px; }
     .team-card > a { font-size: 9px; }
-    .about-footer { flex-direction: column; justify-content: center; text-align: center; }
 }
 
 body.about-page .site-main.about-page-main .about-hero-content h1 { color: #FFFFFF; }

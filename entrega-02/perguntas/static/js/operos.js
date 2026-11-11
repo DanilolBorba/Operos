@@ -82,7 +82,10 @@
             );
 
             const indice = Math.max(0, grupo.indexOf(elemento));
-            const atraso = Math.min(indice, 5) * 85;
+
+            const atraso = elemento.matches(".step-card, .segment-card")
+                ? Math.min(indice, 3) * 130
+                : Math.min(indice, 5) * 85;
 
             elemento.style.setProperty("--reveal-delay", atraso + "ms");
             elemento.classList.add("reveal-on-scroll");
