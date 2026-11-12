@@ -67,6 +67,11 @@ O Operos é um projeto voltando a educar empresas sobre a importância de coleta
         - **Dado que** m cliente está logado no sistema e informa suas necessidades a serem atendidas
         - **Quando** informar os dados necessários, como setor de atuação da empresa, porte e problemas a serem resolvidos, e envia todas suas respostas preenchidas corretamente
         - **Então** o sistema deve avaliar os dados informados e retornar a solução mais adequada ao cliente
+    - **Caso II:** o preenchimento dos requisitos do cliente está incompleto
+        - **Dado que** um cliente está logado no sistema e acessa a parte de informar suas necessidades a serem atendidas
+        - **Quando** tenta enviar o formulário sem preencher um ou mais campos
+        - **Então** o sistema deve impedir de que sua requisição seja enviada
+            - **E** deve retornar um feedback visual de que o envio não pôde ser feito porque existe um ou mais campos vazios
 
 4. **HU04** - Como **usuário logado**, gostaria de solicitar um serviço de IoT, para iniciar o processo de contratação.
     - **Descrição:** Permitir que o usuário solicite um serviço de IoT após ver as soluções recomendadas para iniciar o processo da contratação 
@@ -209,14 +214,16 @@ O Operos é um projeto voltando a educar empresas sobre a importância de coleta
         - **Dado que** m cliente está logado no sistema e informa suas necessidades a serem atendidas
         - **Quando** informar os dados necessários, como setor de atuação da empresa, porte e problemas a serem resolvidos, e envia todas suas respostas preenchidas corretamente
         - **Então** o sistema deve avaliar os dados informados e retornar a solução mais adequada ao cliente
+    - **Caso II:** o preenchimento dos requisitos do cliente está incompleto
+        - **Dado que** um cliente está logado no sistema e acessa a parte de informar suas necessidades a serem atendidas
+        - **Quando** tenta enviar o formulário sem preencher um ou mais campos
+        - **Então** o sistema deve impedir de que sua requisição seja enviada
+            - **E** deve retornar um feedback visual de que o envio não pôde ser feito porque existe um ou mais campos vazios
 
 ---
 ### [placeholder quadro da sprint]
 ---
-### Screencasts
-- [Screencast Código Django]()
-- [Screencast Testes de Sistema E2E]()
-- [Screencast Processo de Build]()
+### [placeholder screencast(s)]
 
 ---
 ---
