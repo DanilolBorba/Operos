@@ -61,17 +61,12 @@ O Operos é um projeto voltando a educar empresas sobre a importância de coleta
             - **E** deve apresentar funcionalidades e benefícios da adoção dela para o cliente
             - **E** precisa usar uma linguagem amiga ao público geral
 
-3. **HU03** - Como **usuário logado**, gostaria de informar os principais problemas e necessidades da minha empresa, para receber soluções de IoT adequadas.
+3. **HU03** - Como **usuário logado**, gostaria de informar as necessidades da minha empresa, para receber soluções de IoT adequadas.
     - **Descrição:** O sistema deve permitir que um cliente autenticado informe as características de sua empresa e suas principais necessidades operacionais, validando os dados fornecidos e registrando as informações necessárias para identificar soluções de IoT compatíveis com seu contexto empresarial. 
     - **Caso I:** O preenchimento e envio dos requisitos é feito pelo cliente com sucesso
         - **Dado que** m cliente está logado no sistema e informa suas necessidades a serem atendidas
         - **Quando** informar os dados necessários, como setor de atuação da empresa, porte e problemas a serem resolvidos, e envia todas suas respostas preenchidas corretamente
         - **Então** o sistema deve avaliar os dados informados e retornar a solução mais adequada ao cliente
-    - **Caso II:** o preenchimento dos requisitos do cliente está incompleto
-        - **Dado que** um cliente está logado no sistema e acessa a parte de informar suas necessidades a serem atendidas
-        - **Quando** tenta enviar o formulário sem preencher um ou mais campos
-        - **Então** o sistema deve impedir de que sua requisição seja enviada
-            - **E** deve retornar um feedback visual de que o envio não pôde ser feito porque existe um ou mais campos vazios
 
 4. **HU04** - Como **usuário logado**, gostaria de solicitar um serviço de IoT, para iniciar o processo de contratação.
     - **Descrição:** Permitir que o usuário solicite um serviço de IoT após ver as soluções recomendadas para iniciar o processo da contratação 
@@ -208,22 +203,21 @@ O Operos é um projeto voltando a educar empresas sobre a importância de coleta
             - **E** deve apresentar funcionalidades e benefícios da adoção dela para o cliente
             - **E** precisa usar uma linguagem amiga ao público geral
 
-3. **HU03** - Como **usuário logado**, gostaria de informar os principais problemas e necessidades da minha empresa, para receber soluções de IoT adequadas.
+3. **HU03** - Como **usuário logado**, gostaria de informar as necessidades da minha empresa, para receber soluções de IoT adequadas.
     - **Descrição:** O sistema deve permitir que um cliente autenticado informe as características de sua empresa e suas principais necessidades operacionais, validando os dados fornecidos e registrando as informações necessárias para identificar soluções de IoT compatíveis com seu contexto empresarial. 
     - **Caso I:** O preenchimento e envio dos requisitos é feito pelo cliente com sucesso
         - **Dado que** m cliente está logado no sistema e informa suas necessidades a serem atendidas
         - **Quando** informar os dados necessários, como setor de atuação da empresa, porte e problemas a serem resolvidos, e envia todas suas respostas preenchidas corretamente
         - **Então** o sistema deve avaliar os dados informados e retornar a solução mais adequada ao cliente
-    - **Caso II:** o preenchimento dos requisitos do cliente está incompleto
-        - **Dado que** um cliente está logado no sistema e acessa a parte de informar suas necessidades a serem atendidas
-        - **Quando** tenta enviar o formulário sem preencher um ou mais campos
-        - **Então** o sistema deve impedir de que sua requisição seja enviada
-            - **E** deve retornar um feedback visual de que o envio não pôde ser feito porque existe um ou mais campos vazios
 
 ---
 ### [placeholder quadro da sprint]
 ---
-### [placeholder screencast(s)]
+### Screencasts
+
+- [Screencast Código Django]()
+- [Screencast Testes de Sistema E2E]()
+- [Screencast Processo de Build]()
 
 ---
 ---
