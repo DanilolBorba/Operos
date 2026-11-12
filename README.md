@@ -1,10 +1,18 @@
 
-# Operos
+<h1 align="center">Operos</h1>
 
 ## Descrição do Projeto
 
 O Operos é um projeto voltando a educar empresas sobre a importância de coletar dados operacionais por meio de IoT para melhorar a gestão e a tomada de decisão.
-https://operos-a7kn.onrender.com
+
+**Nosso site: https://operos-a7kn.onrender.com**
+
+## Índice
+
++ [Entrega 01](https://github.com/DanilolBorba/Operos#entrega-01)
++ [Entrega 02](https://github.com/DanilolBorba/Operos#entrega-02)
++ [Entrega 03](https://github.com/DanilolBorba/Operos#entrega-03)
++ [Entrega 04](https://github.com/DanilolBorba/Operos#entrega-04) 
 
 
 ## Tecnologias Usadas
@@ -27,6 +35,7 @@ https://operos-a7kn.onrender.com
 ![board 2](imagens/boardsprint2.jpg)
 
 ### [Screen Cast](https://youtu.be/S3bN48h3mFk)
+
 
 ---
 ---
