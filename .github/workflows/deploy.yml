@@ -11,6 +11,10 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: entrega-02
+
     services:
       postgres:
         image: postgres:16
@@ -76,7 +80,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Trigger deploy no Render
+        env:
+          DEPLOY_HOOK_RENDER: ${{ secrets.DEPLOY_HOOK_RENDER }}
         run: |
-          curl -X POST ${{ secrets.DEPLOY_HOOK_RENDER }}
+          curl --fail --show-error --silent -X POST "$DEPLOY_HOOK_RENDER"
