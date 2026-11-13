@@ -215,7 +215,7 @@ O Operos é um projeto voltando a educar empresas sobre a importância de coleta
 ---
 ### Screencasts
 
-- [Screencast Código Django]()
+- [Screencast Código Django](https://youtu.be/CAzoLGVMbuQ)
 - [Screencast Testes de Sistema E2E]()
 - [Screencast Processo de Build]()
 
