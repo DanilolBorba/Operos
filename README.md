@@ -211,7 +211,8 @@ O Operos é um projeto voltando a educar empresas sobre a importância de coleta
         - **Então** o sistema deve avaliar os dados informados e retornar a solução mais adequada ao cliente
 
 ---
-### [placeholder quadro da sprint]
+### Quadro da Sprint 4
+![quadro sprint 4](imagens/imagem_2026-11-13_093203964.png)
 ---
 ### Screencasts
 
