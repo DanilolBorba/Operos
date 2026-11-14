@@ -10,7 +10,6 @@
 
 {% block content %}
 
-<!-- HERO -->
  
 <section class="hero-section hero-showcase" id="inicio">
 
@@ -42,7 +41,6 @@
 
 
 
-<!-- CONHECENDO IOT -->
 <section class="page-section intro-section" id="conhecendo-iot">
 
     <div class="section-heading">
@@ -144,7 +142,6 @@
 </section>
 
 
-<!-- SEGMENTOS -->
 <section class="page-section segments-section" id="segmentos">
 
     <div class="section-heading section-heading-light">
@@ -255,7 +252,6 @@
 </section>
 
 
-<!-- INOVAÇÕES -->
 <section class="page-section innovation-section" id="inovacoes">
 
     <div class="innovation-backdrop"></div>
@@ -330,7 +326,6 @@
 </section>
 
 
-<!-- COMO FUNCIONA -->
 <section class="page-section how-section">
 
     <div class="section-heading">
@@ -416,7 +411,6 @@
 </section>
 
 
-<!-- SOLUÇÕES RECOMENDADAS -->
 {% if user.is_authenticated %}
 
 <section class="page-section recommendations-section" id="solucoes">
@@ -572,7 +566,6 @@
 {% endif %}
 
 
-<!-- SOBRE NÓS -->
 <section class="page-section about-section" id="sobre-nos">
 
     <div class="about-glass-panel">
@@ -609,7 +602,6 @@
         </div>
 
 
-        <!-- EQUIPE -->
         <div class="team-preview">
 
             <div class="team-heading">
@@ -621,6 +613,18 @@
             </div>
 
             <div class="team-grid">
+
+                <div class="team-member">
+
+                    <img
+                        src="{% static 'time/anatorres.jpg' %}"
+                        alt="Ana Torres"
+                    >
+
+                    <span>Ana Torres</span>
+
+                </div>
+
 
                 <div class="team-member">
 
@@ -763,7 +767,6 @@
 </section>
 
 
-<!-- RODAPÉ -->
 <footer class="site-footer">
 
     <div class="footer-brand">
@@ -771,7 +774,7 @@
     </div>
 
     <span>
-        Soluções tecnológicas para Internet das Coisas e inovação.
+        Tecnologia que conecta o seu futuro.
     </span>
 
     <a href="#inicio">

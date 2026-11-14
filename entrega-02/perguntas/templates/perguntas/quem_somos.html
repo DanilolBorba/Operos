@@ -28,6 +28,14 @@
     </div>
 
     <div class="team-card-grid">
+
+        <article class="team-card">
+            <div class="team-photo"><img src="{% static 'time/anatorres.jpg' %}" alt="Ana Torres" loading="lazy"></div>
+            <h3>Ana Torres</h3>
+            <a href="mailto:amm5@cesar.school">abtr@cesar.school</a>
+        </article>
+
+
         <article class="team-card">
             <div class="team-photo"><img src="{% static 'time/arturmenezes.jpg' %}" alt="Artur Menezes" loading="lazy"></div>
             <h3>Artur Menezes</h3>
@@ -116,10 +124,20 @@
     </div>
 </section>
 
-<footer class="about-footer">
-    <a href="{% url 'perguntas:index' %}" data-page-transition>OPEROS</a>
-    <span>Internet das Coisas e inovação.</span>
-    <a href="#topo" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">Voltar ao topo ↑</a>
+<footer class="site-footer">
+
+    <div class="footer-brand">
+        OPEROS
+    </div>
+
+    <span>
+        Tecnologia que conecta o seu futuro.
+    </span>
+
+    <a href="{% url 'perguntas:index' %}">
+        Voltar ao início
+    </a>
+
 </footer>
 
 {% endblock %}
