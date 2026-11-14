@@ -220,6 +220,22 @@ O Operos é um projeto voltando a educar empresas sobre a importância de coleta
 - [Screencast Testes de Sistema E2E]()
 - [Screencast Processo de Build]()
 
+### Integração e Deploy Contínuos (CI/CD)
+
+O projeto Operos utiliza GitHub Actions para automatizar a execução dos testes e o processo de deploy.
+
+A cada push na branch `main`, o workflow executa as seguintes etapas:
+
+1. Configuração do ambiente Python 3.12 e PostgreSQL.
+2. Instalação das dependências do projeto.
+3. Execução das migrações do banco de dados.
+4. Coleta dos arquivos estáticos.
+5. Execução dos testes automatizados do Django.
+6. Acionamento do deploy no Render, caso os testes sejam aprovados.
+
+O workflow está localizado em `.github/workflows/deploy.yml`.
+
+
 ---
 ---
 ## Membros da Equipe
