@@ -123,7 +123,139 @@
         {% endblock %}
 
     </main>
+
+
+        <div
+        class="operos-chat"
+        data-chat-url="{% url 'perguntas:chat_operos' %}"
+    >
+        <button
+            class="operos-chat-toggle"
+            type="button"
+            data-chat-toggle
+            aria-label="Abrir assistente do Operos"
+            aria-expanded="false"
+            aria-controls="operos-chat-panel"
+        >
+            <i data-lucide="message-circle-question-mark"></i>
+        </button>
+
+        <section
+            class="operos-chat-panel"
+            id="operos-chat-panel"
+            data-chat-panel
+            aria-label="Assistente virtual do Operos"
+            aria-hidden="true"
+            hidden
+        >
+            <header class="operos-chat-header">
+                <div class="operos-chat-heading">
+                    <span class="operos-chat-avatar">
+                        <i data-lucide="bot"></i>
+                    </span>
+
+                    <div>
+                        <strong>Assistente Operos</strong>
+                        <span>
+                            <span class="operos-chat-status-dot"></span>
+                            Pronto para tirar dúvidas
+                        </span>
+                    </div>
+                </div>
+
+                <div class="operos-chat-header-actions">
+                    <button
+                        class="operos-chat-icon-button"
+                        type="button"
+                        data-chat-clear
+                        aria-label="Limpar conversa"
+                        title="Limpar conversa"
+                    >
+                        <i data-lucide="rotate-ccw"></i>
+                    </button>
+
+                    <button
+                        class="operos-chat-icon-button"
+                        type="button"
+                        data-chat-close
+                        aria-label="Fechar assistente"
+                        title="Fechar"
+                    >
+                        <i data-lucide="x"></i>
+                    </button>
+                </div>
+            </header>
+
+            <div
+                class="operos-chat-messages"
+                data-chat-messages
+                role="log"
+                aria-live="polite"
+                aria-relevant="additions"
+            >
+                <div class="operos-chat-message operos-chat-message-assistant">
+                    Olá! Sou o assistente virtual do Operos. Como posso te ajudar?
+                </div>
+            </div>
+
+            <div class="operos-chat-suggestions" data-chat-suggestions>
+                <span>Você pode perguntar:</span>
+
+                <button
+                    type="button"
+                    data-chat-suggestion="O que é Internet das Coisas (IoT)?"
+                >
+                    O que é IoT?
+                </button>
+
+                <button
+                    type="button"
+                    data-chat-suggestion="Quais soluções do Operos atendem à indústria?"
+                >
+                    Soluções para indústria
+                </button>
+            </div>
+
+            <form class="operos-chat-form" data-chat-form>
+                {% csrf_token %}
+
+                <label class="visually-hidden" for="operos-chat-input">
+                    Digite sua dúvida
+                </label>
+
+                <textarea
+                    id="operos-chat-input"
+                    name="message"
+                    rows="1"
+                    maxlength="1200"
+                    placeholder="Digite sua dúvida..."
+                    data-chat-input
+                    required
+                ></textarea>
+
+                <button
+                    class="operos-chat-send"
+                    type="submit"
+                    data-chat-send
+                    aria-label="Enviar mensagem"
+                >
+                    <i data-lucide="send"></i>
+                </button>
+            </form>
+
+            <p class="operos-chat-disclaimer">
+                As mensagens são processadas pela IA.
+            </p>
+        </section>
+    </div>
+
+
+
     <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked@18.0.5/lib/marked.umd.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.4.17/dist/purify.min.js"></script>
 
     <script>
         if (window.lucide) {
@@ -131,7 +263,7 @@
         }
     </script>
 
-    <script src="{% static 'js/operos.js' %}?v=9" defer></script>
+    <script src="{% static 'js/operos.js' %}?v=11" defer></script>
 
 </body>
 </html>

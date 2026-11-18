@@ -537,3 +537,570 @@ body.home-page #inovacoes {
         border-color .16s ease,
         box-shadow .16s ease;
 }
+
+/* IA DA OPEROS */
+
+.operos-chat {
+    position: fixed;
+    right: 26px;
+    bottom: 24px;
+    z-index: 1200;
+    font-family: "Sora", "Inter", "Segoe UI", Arial, sans-serif;
+}
+
+.operos-chat-toggle {
+    display: grid;
+    place-items: center;
+    width: 62px;
+    height: 62px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    color: #fff;
+    background: #015B80;
+    box-shadow: 0 9px 28px rgba(0, 48, 70, .28);
+    cursor: pointer;
+    transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+}
+
+.operos-chat-toggle:hover {
+    transform: translateY(-3px);
+    background: #00658F;
+    box-shadow: 0 13px 32px rgba(0, 48, 70, .34);
+}
+
+.operos-chat-toggle svg {
+    width: 27px;
+    height: 27px;
+    stroke-width: 1.8;
+}
+
+.operos-chat-panel {
+    position: absolute;
+    right: 0;
+    bottom: 78px;
+    display: flex;
+    flex-direction: column;
+    width: min(370px, calc(100vw - 32px));
+    height: min(550px, calc(100vh - 125px));
+    min-height: 390px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 91, 128, .14);
+    border-radius: 22px;
+    background: #fff;
+    box-shadow: 0 18px 60px rgba(0, 39, 57, .23);
+    transform-origin: bottom right;
+    animation: operosChatOpen .22s cubic-bezier(.2, .75, .25, 1) both;
+}
+
+.operos-chat-panel[hidden] {
+    display: none;
+}
+
+.operos-chat-header {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 76px;
+    padding: 14px 16px;
+    color: #fff;
+    background: linear-gradient(120deg, #015B80, #00658F);
+}
+
+.operos-chat-heading {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    min-width: 0;
+}
+
+.operos-chat-avatar {
+    display: grid;
+    flex: 0 0 42px;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 15px;
+    color: #fff;
+    background: rgba(255,255,255,.13);
+}
+
+.operos-chat-avatar svg {
+    width: 22px;
+    height: 22px;
+}
+
+.operos-chat-heading strong {
+    display: block;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.operos-chat-heading > div > span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 3px;
+    color: rgba(255,255,255,.78);
+    font-size: 10px;
+}
+
+.operos-chat-status-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #8CE0B1;
+    box-shadow: 0 0 0 3px rgba(140,224,177,.14);
+}
+
+.operos-chat-header-actions {
+    display: flex;
+    flex: 0 0 auto;
+    gap: 5px;
+}
+
+.operos-chat-icon-button {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: 0;
+    border-radius: 10px;
+    color: rgba(255,255,255,.88);
+    background: transparent;
+    cursor: pointer;
+    transition: background .16s ease, color .16s ease;
+}
+
+.operos-chat-icon-button:hover {
+    color: #fff;
+    background: rgba(255,255,255,.15);
+}
+
+.operos-chat-icon-button:disabled {
+    opacity: .45;
+    cursor: wait;
+}
+
+.operos-chat-icon-button svg {
+    width: 17px;
+    height: 17px;
+}
+
+.operos-chat-messages {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 11px;
+    min-height: 0;
+    padding: 18px 15px 13px;
+    overflow-y: auto;
+    background: #F6FAFC;
+    scroll-behavior: smooth;
+}
+
+.operos-chat-message {
+    max-width: 88%;
+    padding: 11px 13px;
+    border-radius: 15px;
+    color: #23495A;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0, 53, 76, .055);
+    font-size: 12px;
+    line-height: 1.65;
+    white-space: normal;
+    overflow-wrap: anywhere;
+}
+
+.operos-chat-message-assistant {
+    align-self: flex-start;
+    border: 1px solid rgba(0, 101, 143, .09);
+    border-bottom-left-radius: 5px;
+}
+
+.operos-chat-message-user {
+    align-self: flex-end;
+    border: 1px solid rgba(0, 91, 128, .12);
+    border-bottom-right-radius: 5px;
+    color: #fff;
+    background: #075F82;
+}
+
+.operos-chat-message-error {
+    align-self: flex-start;
+    border: 1px solid rgba(190, 75, 75, .16);
+    color: #934444;
+    background: #FFF7F6;
+}
+
+.operos-chat-suggestions {
+    display: flex;
+    flex: 0 0 auto;
+    flex-wrap: wrap;
+    gap: 7px;
+    padding: 0 15px 12px;
+    background: #F6FAFC;
+}
+
+.operos-chat-suggestions[hidden] {
+    display: none;
+}
+
+.operos-chat-suggestions > span {
+    flex: 0 0 100%;
+    color: #6B8794;
+    font-size: 10px;
+}
+
+.operos-chat-suggestions button {
+    padding: 7px 10px;
+    border: 1px solid rgba(0, 101, 143, .2);
+    border-radius: 999px;
+    color: #075B80;
+    background: #fff;
+    font-family: inherit;
+    font-size: 10px;
+    cursor: pointer;
+    transition: border-color .16s ease, background .16s ease;
+}
+
+.operos-chat-suggestions button:hover {
+    border-color: #00658F;
+    background: #EAF5F9;
+}
+
+.operos-chat-form {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: flex-end;
+    gap: 9px;
+    margin: 0;
+    padding: 12px 13px 8px;
+    border-top: 1px solid rgba(0, 91, 128, .1);
+    background: #fff;
+}
+
+.operos-chat-form textarea {
+    display: block;
+    flex: 1 1 auto;
+    width: 100%;
+    min-height: 42px;
+    max-height: 110px;
+    padding: 11px 12px;
+    resize: none;
+    border: 1px solid rgba(0, 91, 128, .15);
+    border-radius: 13px;
+    outline: none;
+    color: #123E52;
+    background: #F8FBFC;
+    font-family: inherit;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.operos-chat-form textarea:focus {
+    border-color: #5CABC9;
+    box-shadow: 0 0 0 3px rgba(0, 101, 143, .08);
+}
+
+.operos-chat-form textarea::placeholder {
+    color: #91A5AE;
+}
+
+.operos-chat-send {
+    display: grid;
+    flex: 0 0 42px;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border: 0;
+    border-radius: 13px;
+    color: #fff;
+    background: #075B80;
+    cursor: pointer;
+    transition: background .16s ease, transform .16s ease;
+}
+
+.operos-chat-send:hover:not(:disabled) {
+    transform: translateY(-2px);
+    background: #00658F;
+}
+
+.operos-chat-send:disabled {
+    opacity: .55;
+    cursor: wait;
+}
+
+.operos-chat-send svg {
+    width: 18px;
+    height: 18px;
+}
+
+.operos-chat-disclaimer {
+    flex: 0 0 auto;
+    margin: 0;
+    padding: 0 12px 10px;
+    color: #91A5AE;
+    background: #fff;
+    text-align: center;
+    font-size: 9px;
+}
+
+.operos-chat-typing {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    min-height: 34px;
+    padding: 0 13px;
+    border: 1px solid rgba(0, 101, 143, .09);
+    border-radius: 15px;
+    border-bottom-left-radius: 5px;
+    background: #fff;
+}
+
+.operos-chat-typing span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #7AAFC3;
+    animation: operosChatTyping 1s infinite ease-in-out;
+}
+
+.operos-chat-typing span:nth-child(2) {
+    animation-delay: .15s;
+}
+
+.operos-chat-typing span:nth-child(3) {
+    animation-delay: .3s;
+}
+
+.visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+@keyframes operosChatOpen {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes operosChatTyping {
+    0%, 60%, 100% {
+        opacity: .45;
+        transform: translateY(0);
+    }
+
+    30% {
+        opacity: 1;
+        transform: translateY(-3px);
+    }
+}
+
+@media (max-width: 560px) {
+    .operos-chat {
+        right: 16px;
+        bottom: 16px;
+    }
+
+    .operos-chat-toggle {
+        width: 58px;
+        height: 58px;
+    }
+
+    .operos-chat-panel {
+        position: fixed;
+        right: 10px;
+        bottom: 86px;
+        width: calc(100vw - 20px);
+        height: min(610px, calc(100dvh - 106px));
+        min-height: 360px;
+        border-radius: 19px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .operos-chat-panel,
+    .operos-chat-typing span {
+        animation: none !important;
+    }
+
+    .operos-chat-toggle,
+    .operos-chat-icon-button,
+    .operos-chat-suggestions button,
+    .operos-chat-send {
+        transition: none !important;
+    }
+}
+
+/* ==========================================
+   FORMATAÇÃO DAS RESPOSTAS DO ASSISTENTE
+========================================== */
+
+.operos-chat-message {
+    white-space: normal;
+    overflow-wrap: anywhere;
+}
+
+/* Parágrafos */
+
+.operos-chat-message p {
+    margin: 0 0 12px;
+    line-height: 1.75;
+}
+
+.operos-chat-message p:last-child {
+    margin-bottom: 0;
+}
+
+/* Negrito */
+
+.operos-chat-message strong {
+    color: #075B80;
+    font-weight: 700;
+}
+
+/* Itálico */
+
+.operos-chat-message em {
+    font-style: italic;
+}
+
+/* Títulos */
+
+.operos-chat-message h1,
+.operos-chat-message h2,
+.operos-chat-message h3 {
+    margin: 15px 0 9px;
+    color: #075B80;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.operos-chat-message h1:first-child,
+.operos-chat-message h2:first-child,
+.operos-chat-message h3:first-child {
+    margin-top: 0;
+}
+
+/* Listas */
+
+.operos-chat-message ul,
+.operos-chat-message ol {
+    margin: 8px 0 14px;
+    padding-left: 21px;
+}
+
+.operos-chat-message li {
+    margin-bottom: 8px;
+    padding-left: 3px;
+    line-height: 1.7;
+}
+
+.operos-chat-message li:last-child {
+    margin-bottom: 0;
+}
+
+/* Citações */
+
+.operos-chat-message blockquote {
+    margin: 12px 0;
+    padding: 10px 13px;
+    border-left: 3px solid #075B80;
+    border-radius: 0 8px 8px 0;
+    color: #476675;
+    background: #F2F7F9;
+}
+
+/* Tabelas */
+
+.operos-chat-message table {
+    display: block;
+    max-width: 100%;
+    margin: 12px 0;
+    overflow-x: auto;
+    border-collapse: collapse;
+    font-size: 11px;
+}
+
+.operos-chat-message th,
+.operos-chat-message td {
+    padding: 8px;
+    border: 1px solid #DCE7EC;
+    text-align: left;
+    line-height: 1.5;
+}
+
+.operos-chat-message th {
+    color: #075B80;
+    background: #EDF5F8;
+    font-weight: 700;
+}
+
+/* Links */
+
+.operos-chat-message a {
+    color: #075B80;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* Código */
+
+.operos-chat-message code {
+    padding: 2px 5px;
+    border-radius: 4px;
+    color: #075B80;
+    background: #EDF3F5;
+    font-size: 11px;
+}
+
+.operos-chat-message pre {
+    max-width: 100%;
+    margin: 10px 0;
+    padding: 12px;
+    overflow-x: auto;
+    border-radius: 9px;
+    background: #EDF3F5;
+}
+
+.operos-chat-message pre code {
+    padding: 0;
+    background: transparent;
+}
+
+/* Linha divisória */
+
+.operos-chat-message hr {
+    margin: 14px 0;
+    border: 0;
+    border-top: 1px solid #DCE7EC;
+}
+
+/* Mensagens do usuário */
+
+.operos-chat-message-user {
+    white-space: pre-wrap;
+}

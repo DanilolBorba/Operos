@@ -23,5 +23,6 @@ urlpatterns = [
     path('cadastro/', view_cadastro, name='cadastro'),
     path('login/', view_login, name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='perguntas:index'), name='logout'),
+    path('assistente/', views.chat_operos, name='chat_operos'),
 
 ]
