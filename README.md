@@ -118,7 +118,35 @@ O Operos é um projeto voltando a educar empresas sobre a importância de coleta
         - **Quando** for acessar a parte de solicitações recebidas e não houver nenhuma
         - **Então** uma mensagem dizendo que não existem pedidos será mostrada
 
-    
+
+7. **HU07** - Como **admin**, gostaria de visualizar a quantidade de reproduções dos vídeos, separando usuários logados e não logados, para acompanhar o engajamento dos usuários com os conteúdos da plataforma.
+    - **Descrição:** O sistema deve registrar as reproduções dos vídeos realizadas pelos usuários e disponibilizar no painel administrativo a quantidade total de visualizações, diferenciando aquelas feitas por usuários autenticados e visitantes não autenticados.
+    - **Caso I:** Usuário logado reproduz um vídeo
+        - **Dado que** o usuário está autenticado na plataforma e existe um vídeo disponível
+        - **Quando** clicar no botão "Reproduzir vídeo"
+        - **Então** o sistema deverá iniciar a reprodução do vídeo
+            - **E** registrar uma visualização como usuário autenticado
+            - **E** associar a visualização ao vídeo correspondente
+    - **Caso II:** Usuário não logado reproduz um vídeo
+        - **Dado que** o usuário não está autenticado na plataforma e existe um vídeo disponível
+        - **Quando** clicar no botão "Reproduzir vídeo"
+        - **Então** o sistema deverá iniciar a reprodução do vídeo
+            - **E** registrar uma visualização como visitante não autenticado
+            - **E** associar a visualização ao vídeo correspondente
+    - **Caso III:** Administrador visualiza as estatísticas dos vídeos
+        - **Dado que** o administrador está logado e tem permissão para acessar o painel administrativo
+        - **Quando** acessar a seção de estatísticas dos vídeos
+        - **Então** o sistema deverá mostrar a quantidade total de reproduções registradas
+            - **E** mostrar quantas reproduções foram realizadas por usuários logados
+            - **E** mostrar quantas reproduções foram realizadas por usuários não logados
+            - **E** permitir identificar a quantidade de reproduções de cada vídeo
+    - **Caso IV:** Administrador acessa as estatísticas sem reproduções registradas
+        - **Dado que** o administrador está logado e tem permissão para acessar o painel administrativo
+        - **Quando** acessar a seção de estatísticas dos vídeos e não houver nenhuma reprodução registrada
+        - **Então** o sistema deverá mostrar zero reproduções
+            - **E** exibir zero visualizações para usuários logados e não logados
+            - **E** não apresentar erros no painel administrativo
+
 
 ---
 ## Histórias Escolhidas
