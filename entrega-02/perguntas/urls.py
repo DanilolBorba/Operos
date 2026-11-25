@@ -24,5 +24,6 @@ urlpatterns = [
     path('login/', view_login, name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='perguntas:index'), name='logout'),
     path('assistente/', views.chat_operos, name='chat_operos'),
+    path('registrar-video/', views.registrar_visualizacao_video, name='registrar_visualizacao_video'),
 
 ]

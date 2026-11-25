@@ -21,7 +21,7 @@ from app_operos.views import SOLUCOES_IOT
 from django.views.decorators.http import require_POST
 
 from app_operos.views import SOLUCOES_IOT
-
+from .models import VisualizacaoVideo
 import json
 import logging
 import os
@@ -509,3 +509,21 @@ Não atribua a uma pessoa uma função individual além da equipe em que ela apa
             },
             status=502
         )
+
+@require_POST
+def registrar_visualizacao_video(request):
+    video = request.POST.get('video', '').strip()
+
+    if video != 'sensores_iot':
+        return JsonResponse({
+            'erro': 'Vídeo inválido.'
+        }, status=400)
+
+    VisualizacaoVideo.objects.create(
+        video=video,
+        autenticado=request.user.is_authenticated
+    )
+
+    return JsonResponse({
+        'registrado': True
+    })

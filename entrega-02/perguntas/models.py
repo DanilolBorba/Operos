@@ -85,3 +85,16 @@ class UsuarioPersonalizado(AbstractUser):
 
     def __str__(self):
         return self.username
+
+class VisualizacaoVideo(models.Model):
+    video = models.CharField(max_length=100)
+    autenticado = models.BooleanField(default=False)
+    data_reproducao = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Visualização de vídeo"
+        verbose_name_plural = "Visualizações de vídeos"
+
+    def __str__(self):
+        tipo_usuario = "Logado" if self.autenticado else "Não logado"
+        return f"{self.video} - {tipo_usuario}"

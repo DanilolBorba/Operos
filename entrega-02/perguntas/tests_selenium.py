@@ -14,7 +14,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 import time
 
-from perguntas.models import UsuarioPersonalizado, Pergunta  
+from perguntas.models import UsuarioPersonalizado, Pergunta, VisualizacaoVideo  
 from app_operos.models import Solicitacao  
 
 
@@ -466,3 +466,126 @@ class teste2_catalogoSolucoes(BaseTestCase):
             solucoes[-1]
         )
         #time.sleep(4)
+
+
+class teste7_visualizacoesVideo(BaseTestCase):
+
+    def reproduzir_video(self):
+        video = self.wait.until(
+            EC.presence_of_element_located((
+                By.ID, "video-sensores-iot"
+            ))
+        )
+
+        self.driver.execute_script(
+            "arguments[0].muted = true; arguments[0].play();",
+            video
+        )
+
+        self.wait.until(
+            lambda navegador: VisualizacaoVideo.objects.count() == 1
+        )
+
+    def criar_administrador(self):
+        administrador = self.criar_usuario(
+            "admin_hu07", "admin.hu07@example.com"
+        )
+
+        administrador.is_staff = True
+        administrador.is_superuser = True
+        administrador.save()
+
+        return administrador
+
+    def abrir_painel(self, administrador):
+        self.fazer_login_administrativo(administrador.username)
+        self.abrir_pagina("/admin/perguntas/visualizacaovideo/")
+
+        self.wait.until(
+            EC.presence_of_element_located((By.ID, "content"))
+        )
+
+    def teste7_reproducao_usuario_logado(self):
+        usuario = self.criar_usuario(
+            "cliente_hu07", "cliente.hu07@example.com"
+        )
+
+        self.fazer_login_pelo_navegador(usuario.username)
+        self.reproduzir_video()
+
+        visualizacao = VisualizacaoVideo.objects.first()
+
+        self.assertEqual(visualizacao.video, "sensores_iot")
+        self.assertTrue(visualizacao.autenticado)
+
+    def teste7_reproducao_usuario_nao_logado(self):
+        self.abrir_pagina("/")
+        self.reproduzir_video()
+
+        visualizacao = VisualizacaoVideo.objects.first()
+
+        self.assertEqual(visualizacao.video, "sensores_iot")
+        self.assertFalse(visualizacao.autenticado)
+
+    
+    def teste7_painel_exibe_estatisticas(self):
+        administrador = self.criar_administrador()
+
+        VisualizacaoVideo.objects.create(
+            video="sensores_iot",
+            autenticado=True
+        )
+
+        VisualizacaoVideo.objects.create(
+            video="sensores_iot",
+            autenticado=True
+        )
+
+        VisualizacaoVideo.objects.create(
+            video="sensores_iot",
+            autenticado=False
+        )
+
+        self.abrir_painel(administrador)
+
+        total = self.driver.find_element(
+            By.XPATH,
+            "//h3[normalize-space()='Total de reproduções']/following-sibling::h1[1]"
+        ).text
+
+        logados = self.driver.find_element(
+            By.XPATH,
+            "//h3[normalize-space()='Usuários logados']/following-sibling::h1[1]"
+        ).text
+
+        nao_logados = self.driver.find_element(
+            By.XPATH,
+            "//h3[normalize-space()='Usuários não logados']/following-sibling::h1[1]"
+        ).text
+
+        self.assertEqual(total, "3")
+        self.assertEqual(logados, "2")
+        self.assertEqual(nao_logados, "1")
+
+        tabela = self.driver.find_element(
+            By.XPATH,
+            "//h2[normalize-space()='Reproduções por vídeo']/following-sibling::table[1]"
+        )
+
+        texto_tabela = tabela.get_attribute("textContent")
+
+        self.assertIn("sensores_iot", texto_tabela)
+
+
+    def teste7_painel_sem_visualizacoes(self):
+        administrador = self.criar_administrador()
+        self.abrir_painel(administrador)
+
+        body = self.driver.find_element(By.TAG_NAME, "body")
+
+        self.assertIn(
+            "Nenhuma reprodução de vídeo registrada.",
+            body.text
+        )
+
+        self.assertEqual(VisualizacaoVideo.objects.count(), 0)

@@ -1,0 +1,59 @@
+
+{% extends "admin/change_list.html" %}
+
+{% block content %}
+
+<div style="margin-bottom: 25px;">
+    <h2>Estatísticas de reproduções dos vídeos</h2>
+
+    <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+
+        <div style="padding: 20px; border: 1px solid gray;">
+            <h3>Total de reproduções</h3>
+            <h1>{{ total }}</h1>
+        </div>
+
+        <div style="padding: 20px; border: 1px solid gray;">
+            <h3>Usuários logados</h3>
+            <h1>{{ logados }}</h1>
+        </div>
+
+        <div style="padding: 20px; border: 1px solid gray;">
+            <h3>Usuários não logados</h3>
+            <h1>{{ nao_logados }}</h1>
+        </div>
+
+    </div>
+
+    <h2>Reproduções por vídeo</h2>
+
+    {% if videos %}
+        <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th>Vídeo</th>
+                    <th>Total</th>
+                    <th>Logados</th>
+                    <th>Não logados</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for video in videos %}
+                    <tr>
+                        <td>{{ video.video }}</td>
+                        <td>{{ video.total }}</td>
+                        <td>{{ video.logados }}</td>
+                        <td>{{ video.nao_logados }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Nenhuma reprodução de vídeo registrada.</p>
+    {% endif %}
+</div>
+
+{{ block.super }}
+
+{% endblock %}
